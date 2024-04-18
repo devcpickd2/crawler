@@ -1,74 +1,107 @@
 <!-- Content wrapper -->
-    <div class="content-wrapper">
-        <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master User /</span> Pegawai</h4>
-            <div class="demo-inline-spacing">
-                <button type="button" class="btn btn-primary">
-                    <span class="tf-icons bx bxs-plus-circle"></span>&nbsp; Tambah Data
-                </button>
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master User /</span> Pegawai</h4>
+        <div class="demo-inline-spacing">
+            <a href="<?= base_url('pegawai/tambah') ?>" class="btn btn-primary">
+                <span class="tf-icons bx bxs-plus-circle"></span>&nbsp; Tambah Pegawai
+            </a>
+        </div>
+        <hr class="my-5" />
+        <!-- Responsive Table -->
+        <div class="card">
+            <h5 class="card-header">Daftar Pegawai</h5>
+            <?php if($this->session->flashdata('success_msg')): ?>
+            <div class="alert alert-success text-center">
+                <i class="fas fa-check"></i>
+                <?= $this->session->flashdata('success_msg') ?>
             </div>
-              <hr class="my-5" />
-              <!-- Responsive Table -->
-              <div class="card">
-                <h5 class="card-header">Responsive Table</h5>
-                <div class="table-responsive text-nowrap">
-                  <table class="table">
+            <br>
+            <?php endif ?>
+
+            <?php if($this->session->flashdata('error_msg')): ?>
+            <div class="alert alert-danger text-center">
+                <i class="fas fa-check"></i>
+                <?= $this->session->flashdata('error_msg') ?>
+            </div>
+            <br>
+            <?php endif ?>
+
+            <div class="table-responsive text-nowrap">
+                <table class="table">
                     <thead>
-                      <tr class="text-nowrap">
-                        <th>#</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                      </tr>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Karyawan</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Departemen</th>
+                            <th>Tipe User</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                      </tr>
+                        <?php
+                        $no = 1;
+                        foreach ($pegawai as $val) {
+                        ?>
+                            <tr>
+                                <td><?= $no; ?></td>
+                                <td><?= $val->nama; ?></td>
+                                <td><?= $val->email; ?></td>
+                                <td><?= $val->username; ?></td>
+                                <td><?= $val->departemen; ?></td>
+                                <td>
+                                    <?php
+                                    switch ($val->tipe_user) {
+                                        case 0:
+                                            echo "Admin";
+                                            break;
+                                        case 1:
+                                            echo "Manager";
+                                            break;
+                                        case 2:
+                                            echo "Supervisor";
+                                            break;
+                                        case 3:
+                                            echo "Foreman/Forelady";
+                                            break;
+                                        case 4:
+                                            echo "Staff";
+                                            break;
+                                        case 5:
+                                            echo "QC Inspector";
+                                            break;
+                                        case 6:
+                                            echo "Head Section";
+                                            break;
+                                        default:
+                                            echo "Unknown";
+                                    }
+                                    ?>
+                                </td>
+                                <td class="text-center">
+                                    <a href="<?= base_url('pegawai/edit/' . $val->uuid); ?>" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="<?= base_url('pegawai/edituser/' . $val->uuid); ?>" class="btn btn-info">
+                                        <i class="fas fa-info-circle"></i> Uname
+                                    </a>
+                                    <a href="<?= base_url('pegawai/editpass/' . $val->uuid); ?>" class="btn btn-info">
+                                        <i class="fas fa-info-circle"></i> Pass
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                            $no++;
+                        }
+                        ?>
                     </tbody>
-                  </table>
-                </div>
-              </div>
-              <!--/ Responsive Table -->
+                </table>
             </div>
-            <!-- / Content -->
+        </div>
+        <!--/ Responsive Table -->
+    </div>
+    <!-- / Content -->
+</div>

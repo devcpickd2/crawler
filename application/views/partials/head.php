@@ -20,7 +20,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?=base_url()?>favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="<?=base_url('favicon.ico')?>" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Fonts -->
@@ -38,20 +38,18 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="<?=base_url()?>assets/css/demo.css" />
-
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/libs/apex-charts/apex-charts.css" />
-
     <!-- Page CSS -->
-
     <!-- Helpers -->
     <script src="<?=base_url()?>assets/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="<?=base_url()?>assets/js/config.js"></script>
+    <style>
+        .active {
+            color: purple;
+        }
+    </style>
   </head>
 
   <body>
@@ -64,7 +62,7 @@
           <div class="app-brand demo">
             <a href="<?= base_url('home');?>" class="app-brand-link">
               <span class="app-brand-logo demo">
-                <img src="assets/img/cpi-logo.png" alt="CPI Logo" style="max-width: 50px;">
+                <img src="<?=base_url('assets/img/cpi-logo.png')?>" alt="CPI Logo" style="max-width: 50px;">
               </span>
               <span class="app-brand-text demo menu-text fw-bolder ms-2">E-RTM</span>
             </a>
@@ -78,53 +76,43 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="<?= base_url('home');?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-              </a>
+            <li class="menu-item">
+                <a href="<?= base_url('home');?>" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">Dashboard</div>
+                </a>
             </li>
             <!-- Master User -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Master User</span></li>
             <!-- Forms -->
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Master Data</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="<?= base_url('pegawai') ?>" class="menu-link">
-                    <div data-i18n="Basic Inputs">Pegawai</div>
-                  </a>
-                </li>
-                <!-- <li class="menu-item">
-                  <a href="forms-input-groups.html" class="menu-link">
-                    <div data-i18n="Input groups">Input groups</div>
-                  </a>
-                </li> -->
-              </ul>
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div data-i18n="Form Elements">Master Data</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="<?= base_url('pegawai') ?>" class="menu-link">
+                            <div data-i18n="Basic Inputs">Pegawai</div>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <!-- Forms & Tables -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms</span></li>
             <!-- Forms -->
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Form Cooking</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="forms-basic-inputs.html" class="menu-link">
-                    <div data-i18n="Basic Inputs">Suhu</div>
-                  </a>
-                </li>
-                <!-- <li class="menu-item">
-                  <a href="forms-input-groups.html" class="menu-link">
-                    <div data-i18n="Input groups">Input groups</div>
-                  </a>
-                </li> -->
-              </ul>
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div data-i18n="Form Elements">Form Cooking</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="<?= base_url('termo');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Peneraan Termo</div>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -510,30 +498,32 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
-<script>
-  const menuItems = document.querySelectorAll('.menu-item');
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuItems = document.querySelectorAll('.menu-item');
 
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      menuItems.forEach(menuItem => {
-        menuItem.classList.remove('active');
-      });
-      item.classList.add('active');
-
-      const subMenu = item.querySelector('.menu-sub');
-      if (subMenu) {
-        const subItems = subMenu.querySelectorAll('.menu-item');
-        subItems.forEach(subItem => {
-          subItem.classList.remove('active');
+        menuItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+                menuItems.forEach(menuItem => {
+                    menuItem.classList.remove('active');
+                });
+                item.classList.add('active');
+                if (item.classList.contains('dashboard-item')) {
+                    return;
+                }
+                const subMenu = item.querySelector('.menu-sub');
+                if (subMenu) {
+                    const subItems = subMenu.querySelectorAll('.menu-item');
+                    subItems.forEach(subItem => {
+                        subItem.classList.remove('active');
+                    });
+                }
+                const menuLink = item.querySelector('.menu-link').getAttribute('href');
+                if (menuLink === "<?= base_url('pegawai') ?>" || menuLink === "<?= base_url('suhu') ?>" || menuLink === "<?= base_url('home') ?>") {
+                    window.location.href = menuLink;
+                }
+            });
         });
-      }
-      const parentMenu = item.closest('.menu-item');
-      if (parentMenu && !parentMenu.classList.contains('active')) {
-        parentMenu.classList.add('active');
-      }
     });
-  });
-</script>
-
-
-
+</script> -->

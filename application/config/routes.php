@@ -52,7 +52,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 
 $route['home'] = 'home';
+
 $route['pegawai'] = 'pegawai';
+$route['pegawai/tambah'] = 'pegawai/tambah';
+$route['pegawai/edit/(:any)'] = 'pegawai/edit/$1';
+$route['pegawai/edituser/(:any)'] = 'pegawai/edituser/$1';
+$route['pegawai/editpass/(:any)'] = 'pegawai/editpass/$1';
+
+$route['termo'] = 'termo';
+$route['termo/tambah'] = 'termo/tambah';
+$route['termo/edit'] = 'termo/edit';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
