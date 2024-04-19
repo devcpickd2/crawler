@@ -61,7 +61,7 @@ $route['pegawai/editpass/(:any)'] = 'pegawai/editpass/$1';
 
 $route['termo'] = 'termo';
 $route['termo/tambah'] = 'termo/tambah';
-$route['termo/edit'] = 'termo/edit';
+$route['termo/edit/(:any)'] = 'termo/edit/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -11,23 +11,48 @@
         <hr class="my-5" />
         <!-- Responsive Table -->
         <div class="card">
-            <h5 class="card-header">Data Peneraan Termometer</h5>
+            <!-- <h5 class="card-header">Data Peneraan Termometer</h5> -->
             <?php if($this->session->flashdata('success_msg')): ?>
-            <div class="alert alert-success text-center">
-                <i class="fas fa-check"></i>
-                <?= $this->session->flashdata('success_msg') ?>
-            </div>
-            <br>
+                <div id="successModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Success!</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <?= $this->session->flashdata('success_msg') ?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php endif ?>
 
             <?php if($this->session->flashdata('error_msg')): ?>
-            <div class="alert alert-danger text-center">
-                <i class="fas fa-check"></i>
-                <?= $this->session->flashdata('error_msg') ?>
-            </div>
-            <br>
+                <div id="errorModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Error!</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <?= $this->session->flashdata('error_msg') ?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php endif ?>
-
+        <!-- / Alert Modals -->
+        <!-- Responsive Table -->
+        <div class="card">
+            <h5 class="card-header">Data Peneraan Termometer</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
@@ -59,7 +84,10 @@
                                 <td><?= $val->catatan; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('termo/edit/' . $val->uuid); ?>" class="btn btn-warning">
-                                        <i class="fas fa-edit"></i> Edit
+                                        <i class="bx bx-edit"></i> Edit
+                                    </a>
+                                    <a href="<?= base_url('termo/print_pdf/' . $val->uuid); ?>" class="btn btn-info" target="_blank">
+                                        <i class="bx bx-printer"></i> Print
                                     </a>
                                 </td>
                             </tr>
@@ -75,3 +103,18 @@
     </div>
     <!-- / Content -->
 </div>
+<script>
+    $(document).ready(function(){
+        <?php if($this->session->flashdata('success_msg')): ?>
+            $('#successModal').modal('show');
+        <?php endif ?>
+
+        <?php if($this->session->flashdata('error_msg')): ?>
+            $('#errorModal').modal('show');
+        <?php endif ?>
+
+        $('.modal .close').on('click', function() {
+            $(this).closest('.modal').modal('hide');
+        });
+    });
+</script>

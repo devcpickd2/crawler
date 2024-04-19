@@ -8,10 +8,46 @@ class Termo_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-
 		// $this->load->model('auth_model');
 	}
-
+	public function rules(){
+		return [
+			[
+				'field' => 'date',
+				'label' => 'Date',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'shift',
+				'label' => 'Shift',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'kode_termo',
+				'label' => 'Kode Termometer/Area',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'pukul',
+				'label' => 'Pukul',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'hasil_tera',
+				'label' => 'Hasil Tera',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'tindakan',
+				'label' => 'Tindakan',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'catatan',
+				'label' => 'Catatan'
+			]
+		];
+	}
 
 	public function insert()
 	{
@@ -43,6 +79,26 @@ class Termo_model extends CI_Model {
     public function get_all(){
         $query = $this->db->get('peneraan_termo');
         return $query->result();
+    }
+
+	public function update($uuid, $data)
+    {
+        $this->db->where('uuid', $uuid);
+        $this->db->update('peneraan_termo', $data);
+        return ($this->db->affected_rows() > 0) ? true : false;
+    }
+    public function get_by_uuid($uuid)
+    {
+        $this->db->where('uuid', $uuid);
+        $query = $this->db->get('peneraan_termo');
+        return $query->row();
+    }
+
+    public function delete($uuid)
+    {
+        $this->db->where('uuid', $uuid);
+        $this->db->delete('peneraan_termo');
+        return ($this->db->affected_rows() > 0) ? true : false;
     }
 
 }

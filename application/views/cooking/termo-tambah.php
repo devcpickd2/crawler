@@ -10,12 +10,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="nama" class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                                <label for="date" class="form-label">Tanggal</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
                             </div>
                             <div class="mb-3">
-                                <label for="kode_termometer" class="form-label">Kode Termometer/Area</label>
-                                <input type="text" class="form-control" id="kode_termometer" name="kode_termometer" placeholder="Masukkan kode termometer/area..." required>
+                                <label for="shift" class="form-label">Shift</label>
+                                <select class="form-select" id="shift" name="shift" required>
+                                    <option value="" disabled selected>Pilih Shift</option>
+                                    <option value="1">Shift 1</option>
+                                    <option value="2">Shift 2</option>
+                                    <option value="3">Shift 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="kode_termo" class="form-label">Kode Termometer/Area</label>
+                                <input type="text" class="form-control" id="kode_termo" name="kode_termo" placeholder="Masukkan kode termometer/area..." required>
                             </div>
                             <div class="mb-3">
                                 <label for="pukul" class="form-label">Pukul</label>
@@ -28,8 +37,12 @@
                                 <input type="text" class="form-control" id="hasil_tera" name="hasil_tera" placeholder="Masukkan hasil tera..." required>
                             </div>
                             <div class="mb-3">
-                                <label for="tindakan" class="form-label">Tindakan</label>
+                                <label for="tindakan" class="form-label">tindakan</label>
                                 <input type="text" class="form-control" id="tindakan" name="tindakan" placeholder="Masukkan tindakan..." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="catatan" class="form-label">catatan</label>
+                                <input type="text" class="form-control" id="catatan" name="catatan" placeholder="Masukkan catatan..."   >
                             </div>
                         </div>
                     </div>
