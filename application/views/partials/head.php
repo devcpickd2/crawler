@@ -112,6 +112,16 @@
                             <div data-i18n="Basic Inputs">Peneraan Termo</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('timbangan');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Peneraan Timbangan</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('verif_premix');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Verifikasi Premix</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="menu-item">

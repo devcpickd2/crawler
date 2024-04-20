@@ -63,5 +63,13 @@ $route['termo'] = 'termo';
 $route['termo/tambah'] = 'termo/tambah';
 $route['termo/edit/(:any)'] = 'termo/edit/$1';
 
+$route['timbangan'] = 'timbangan';
+$route['timbangan/tambah'] = 'timbangan/tambah';
+$route['timbangan/edit/(:any)'] = 'timbangan/edit/$1';
+
+$route['verif_premix'] = 'verif_premix';
+$route['verif_premix/tambah'] = 'verif_premix/tambah';
+$route['verif_premix/edit/(:any)'] = 'verif_premix/edit/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

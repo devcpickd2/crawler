@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Jakarta');
 use Ramsey\Uuid\Uuid;
 
 
-class Termo_model extends CI_Model {
+class Timbangan_model extends CI_Model {
 	
 	public function __construct()
 	{
@@ -23,8 +23,8 @@ class Termo_model extends CI_Model {
 				'rules' => 'required'
 			],
 			[
-				'field' => 'kode_termo',
-				'label' => 'Kode Termometer/Area',
+				'field' => 'kode_timbangan',
+				'label' => 'Kode Timbangan/Area',
 				'rules' => 'required'
 			],
 			[
@@ -55,7 +55,7 @@ class Termo_model extends CI_Model {
 
 		$date = $this->input->post('date');
 		$shift = $this->input->post('shift');
-		$kode_termo = $this->input->post('kode_termo');
+		$kode_timbangan = $this->input->post('kode_timbangan');
 		$pukul = $this->input->post('pukul');
 		$hasil_tera = $this->input->post('hasil_tera');
 		$tindakan = $this->input->post('tindakan');
@@ -65,45 +65,45 @@ class Termo_model extends CI_Model {
 			'uuid' => $uuid,
 			'date' => $this->input->post('date'),
             'shift' => $this->input->post('shift'),
-            'kode_termo' => $this->input->post('kode_termo'),
+            'kode_timbangan' => $this->input->post('kode_timbangan'),
             'pukul' => $this->input->post('pukul'),
             'hasil_tera' => $this->input->post('hasil_tera'),
             'tindakan' => $this->input->post('tindakan'),
             'catatan' => $this->input->post('catatan')
 		);
 
-		$this->db->insert('peneraan_termo', $data);
+		$this->db->insert('peneraan_timbangan', $data);
 		return($this->db->affected_rows() > 0) ? true :false;
 
 	}
     public function get_all(){
-        $query = $this->db->get('peneraan_termo');
+        $query = $this->db->get('peneraan_timbangan');
         return $query->result();
     }
 
 	public function update($uuid, $data)
     {
         $this->db->where('uuid', $uuid);
-        $this->db->update('peneraan_termo', $data);
+        $this->db->update('peneraan_timbangan', $data);
         return ($this->db->affected_rows() > 0) ? true : false;
     }
     public function get_by_uuid($uuid)
     {
         $this->db->where('uuid', $uuid);
-        $query = $this->db->get('peneraan_termo');
+        $query = $this->db->get('peneraan_timbangan');
         return $query->row();
     }
 
     public function delete($uuid)
     {
         $this->db->where('uuid', $uuid);
-        $this->db->delete('peneraan_termo');
+        $this->db->delete('peneraan_timbangan');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
 	public function get_by_date($tanggal)
     {
         $this->db->where('date', $tanggal);
-        return $this->db->get('peneraan_termo')->result();
+        return $this->db->get('peneraan_timbangan')->result();
     }
 
 }
