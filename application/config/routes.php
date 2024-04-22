@@ -71,5 +71,9 @@ $route['verif_premix'] = 'verif_premix';
 $route['verif_premix/tambah'] = 'verif_premix/tambah';
 $route['verif_premix/edit/(:any)'] = 'verif_premix/edit/$1';
 
+$route['verif_intitusi'] = 'verif_intitusi';
+$route['verif_intitusi/tambah'] = 'verif_intitusi/tambah';
+$route['verif_intitusi/edit/(:any)'] = 'verif_intitusi/edit/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

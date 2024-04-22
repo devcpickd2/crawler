@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Jakarta');
 use Ramsey\Uuid\Uuid;
 
 
-class Verif_Premix_model extends CI_Model {
+class Sortasi_Cooking_model extends CI_Model {
 	
 	public function __construct()
 	{
@@ -23,8 +23,8 @@ class Verif_Premix_model extends CI_Model {
 				'rules' => 'required'
 			],
             [
-				'field' => 'nama_premix',
-				'label' => 'Nama Premix',
+				'field' => 'nama_bahan',
+				'label' => 'Nama Bahan',
 				'rules' => 'required'
 			],
 			[
@@ -33,9 +33,17 @@ class Verif_Premix_model extends CI_Model {
 				'rules' => 'required'
 			],
 			[
-				'field' => 'sensori',
-				'label' => 'Sensori',
+				'field' => 'jumlah_bahan_sebelum',
+				'label' => 'Jumlah Bahan sebelum',
 				'rules' => 'required'
+			],
+            [
+				'field' => 'sesuai',
+				'label' => 'Sesuai'
+			],
+            [
+				'field' => 'tidak_Sesuai',
+				'label' => 'Tidak Sesuai'
 			],
 			[
 				'field' => 'tindakan_koreksi',
@@ -55,9 +63,11 @@ class Verif_Premix_model extends CI_Model {
 
 		$date = $this->input->post('date');
 		$shift = $this->input->post('shift');
-		$nama_premix = $this->input->post('nama_premix');
+		$nama_bahan = $this->input->post('nama_bahan');
 		$kode_produksi = $this->input->post('kode_produksi');
-		$sensori = $this->input->post('sensori');
+		$jumlah_bahan_sebelum = $this->input->post('jumlah_bahan_sebelum');
+		$sesuai = $this->input->post('sesuai');
+		$tidak_sesuai = $this->input->post('tidak_sesuai');
 		$tindakan_koreksi = $this->input->post('tindakan_koreksi');
 		$catatan = $this->input->post('catatan');
 
@@ -65,45 +75,47 @@ class Verif_Premix_model extends CI_Model {
 			'uuid' => $uuid,
 			'date' => $this->input->post('date'),
             'shift' => $this->input->post('shift'),
-            'nama_premix' => $this->input->post('nama_premix'),
+            'nama_bahan' => $this->input->post('nama_bahan'),
             'kode_produksi' => $this->input->post('kode_produksi'),
-            'sensori' => $this->input->post('sensori'),
+            'jumlah_bahan_sebelum' => $this->input->post('jumlah_bahan_sebelum'),
+            'sesuai' => $this->input->post('sesuai'),
+            'tidak_sesuai' => $this->input->post('tidak_sesuai'),
             'tindakan_koreksi' => $this->input->post('tindakan_koreksi'),
             'catatan' => $this->input->post('catatan')
 		);
 
-		$this->db->insert('verifikasi_premix', $data);
+		$this->db->insert('sortasi_tdksesuai', $data);
 		return($this->db->affected_rows() > 0) ? true :false;
 
 	}
     public function get_all(){
-        $query = $this->db->get('verifikasi_premix');
+        $query = $this->db->get('sortasi_tdksesuai');
         return $query->result();
     }
 
 	public function update($uuid, $data)
     {
         $this->db->where('uuid', $uuid);
-        $this->db->update('verifikasi_premix', $data);
+        $this->db->update('sortasi_tdksesuai', $data);
         return ($this->db->affected_rows() > 0) ? true : false;
     }
     public function get_by_uuid($uuid)
     {
         $this->db->where('uuid', $uuid);
-        $query = $this->db->get('verifikasi_premix');
+        $query = $this->db->get('sortasi_tdksesuai');
         return $query->row();
     }
 
     public function delete($uuid)
     {
         $this->db->where('uuid', $uuid);
-        $this->db->delete('verifikasi_premix');
+        $this->db->delete('sortasi_tdksesuai');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
 	public function get_by_date($tanggal)
     {
         $this->db->where('date', $tanggal);
-        return $this->db->get('verifikasi_premix')->result();
+        return $this->db->get('sortasi_tdksesuai')->result();
     }
 
 }

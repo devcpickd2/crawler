@@ -122,6 +122,16 @@
                             <div data-i18n="Basic Inputs">Verifikasi Premix</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('sortasi_cooking');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Sortasi Bahan Baku Yang Tidak Sesuai</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('verif_institusi');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Verifikasi Produk Institusi</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="menu-item">

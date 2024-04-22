@@ -1,70 +1,70 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Verif_Premix extends CI_Controller {
+class Sortasi_Cooking extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('verif_premix_model');
+        $this->load->model('sortasi_cooking_model');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
         $data = array(
-            'verif_premix' => $this->verif_premix_model->get_all(),
+            'sortasi_cooking' => $this->sortasi_cooking_model->get_all(),
 			// 'tanggal' => date('Y-m-d'),
-            'active_nav' => 'verif_premix', 
+            'active_nav' => 'sortasi_cooking', 
         );
 
         $this->load->view('partials/head', $data);
-        $this->load->view('cooking/verif_premix');
+        $this->load->view('cooking/sortasi_cooking');
         $this->load->view('partials/footer');
     }
     
     public function tambah()
     {
-        $rules = $this->verif_premix_model->rules();
+        $rules = $this->sortasi_cooking_model->rules();
         $this->form_validation->set_rules($rules);
 
         if ($this->form_validation->run() == TRUE) {
-            $insert = $this->verif_premix_model->insert();
+            $insert = $this->sortasi_cooking_model->insert();
             if ($insert) {
-                $this->session->set_flashdata('success_msg', "Data Verifikasi Premix berhasil disimpan");
+                $this->session->set_flashdata('success_msg', "Data Sortasi Bahan Baku Yang Tidak Sesuai berhasil disimpan");
             } else {
-                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Verifikasi Premix");
+                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Sortasi Bahan Baku Yang Tidak Sesuai");
             }
-            redirect('verif_premix');
+            redirect('sortasi_cooking');
         }
 
         $data = array(
-            'verif_premix' => $this->verif_premix_model->get_all(),
-            'active_nav' => 'verif_premix', 
+            'sortasi_cooking' => $this->sortasi_cooking_model->get_all(),
+            'active_nav' => 'sortasi_cooking', 
         );
 
         $this->load->view('partials/head', $data);
-        $this->load->view('cooking/verif_premix-tambah', $data);
+        $this->load->view('cooking/sortasi_cooking-tambah', $data);
         $this->load->view('partials/footer');
     }
 	public function edit($uuid)
 	{
-		$data['verif_premix'] = $this->verif_premix_model->get_by_uuid($uuid);
+		$data['sortasi_cooking'] = $this->sortasi_cooking_model->get_by_uuid($uuid);
 
 		$this->load->view('partials/head', $data);
-		$this->load->view('cooking/verif_premix-edit', $data);
+		$this->load->view('cooking/sortasi_cooking-edit', $data);
 		$this->load->view('partials/footer');
 	}
 
 	public function update()
 	{
 		// Form validation rules
-		$rules = $this->verif_premix_model->rules();
+		$rules = $this->sortasi_cooking_model->rules();
 		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('partials/head');
-			$this->load->view('cooking/verif_premix-edit');
+			$this->load->view('cooking/sortasi_cooking-edit');
 			$this->load->view('partials/footer');
 		} else {
 			$uuid = $this->input->post('uuid');
@@ -72,34 +72,35 @@ class Verif_Premix extends CI_Controller {
 			$data = array(
 				'date' => $this->input->post('date'),
 				'shift' => $this->input->post('shift'),
-				'nama_premix' => $this->input->post('nama_premix'),
+				'nama_bahan' => $this->input->post('nama_bahan'),
 				'kode_produksi' => $this->input->post('kode_produksi'),
-				'sensori' => $this->input->post('sensori'),
-				'tindakan_koreksi' => $this->input->post('tindakan_koreksi'),
+				'jumlah_bahan_sebelum' => $this->input->post('jumlah_bahan_sebelum'),
+				'sesuai' => $this->input->post('sesuai'),
+				'tidak_sesuai' => $this->input->post('tidak_sesuai'),
 				'catatan' => $this->input->post('catatan')
 			);
 
-			$update = $this->verif_premix_model->update($uuid, $data);
+			$update = $this->sortasi_cooking_model->update($uuid, $data);
 
 			if ($update) {
-				$this->session->set_flashdata('success_msg', 'Data verif_premix berhasil diupdate');
-				redirect('verif_premix');
+				$this->session->set_flashdata('success_msg', 'Data sortasi cooking berhasil diupdate');
+				redirect('sortasi_cooking');
 			} else {
-				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data verif_premix');
-				redirect('verif_premix/edit/' . $uuid);
+				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data sortasi cooking');
+				redirect('sortasi_cooking/edit/' . $uuid);
 			}
 		}
 	}
 
     public function hapus($uuid)
     {
-        $delete = $this->verif_premix_model->delete($uuid);
+        $delete = $this->sortasi_cooking_model->delete($uuid);
         if ($delete) {
-            $this->session->set_flashdata('success_msg', 'Data verif_premix berhasil dihapus');
+            $this->session->set_flashdata('success_msg', 'Data sortasi_cooking berhasil dihapus');
         } else {
-            $this->session->set_flashdata('error_msg', 'Gagal menghapus data verif_premix');
+            $this->session->set_flashdata('error_msg', 'Gagal menghapus data sortasi_cooking');
         }
-        redirect('verif_premix');
+        redirect('sortasi_cooking');
     }
 	
 	public function print_pdf()
@@ -107,7 +108,7 @@ class Verif_Premix extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-		$verif_premix = $this->verif_premix_model->get_by_date($tanggal);
+		$sortasi_cooking = $this->sortasi_cooking_model->get_by_date($tanggal);
 
 		$pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
 		$pdf->setPrintHeader(false);
@@ -127,8 +128,8 @@ class Verif_Premix extends CI_Controller {
 		$pdf->Ln();
 		$pdf->SetFont('helvetica', 11); 
 		$pdf->Cell(0, 10, 'Tanggal: ' . $tanggal, 0, 1, 'L');
-		if (!empty($verif_premix)) {
-			$pdf->Cell(0, 10, 'Shift: ' . $verif_premix[0]->shift, 0, 1, 'L');
+		if (!empty($sortasi_cooking)) {
+			$pdf->Cell(0, 10, 'Shift: ' . $sortasi_cooking[0]->shift, 0, 1, 'L');
 		}
 
 		$pdf->SetFillColor(255, 255, 255);
@@ -137,15 +138,15 @@ class Verif_Premix extends CI_Controller {
         $pdf->Cell(60, 20, 'NAMA PREMIX', 1, 0, 'C', 1);
         $pdf->Cell(50, 20, 'KODE PRODUKSI', 1, 0, 'C', 1);
         $pdf->Cell(50, 20, 'SENSORI', 1, 0, 'C', 1);
-        $pdf->Cell(60, 20, 'TINDAKAN KOREKSI', 1, 1, 'C', 1); // Changed last parameter to 1
+        $pdf->Cell(60, 20, 'TINDAKAN KOREKSI', 1, 1, 'C', 1);
 
         $pdf->SetFont('helvetica', '');
         $row = 1;
-        foreach ($verif_premix as $row_data) {
+        foreach ($sortasi_cooking as $row_data) {
             $pdf->Cell(10, 10, $row++, 1, 0, 'C');
             $pdf->Cell(60, 10, $row_data->nama_premix, 1, 0, 'C');
-            $pdf->Cell(50, 10, $row_data->kode_produksi, 1, 0, 'C'); // Adjusted width
-            $pdf->Cell(50, 10, $row_data->sensori, 1, 0, 'C'); // Adjusted width
+            $pdf->Cell(50, 10, $row_data->kode_produksi, 1, 0, 'C'); 
+            $pdf->Cell(50, 10, $row_data->sensori, 1, 0, 'C');
             $pdf->Cell(60, 10, $row_data->tindakan_koreksi, 1, 1, 'C');
         }
 

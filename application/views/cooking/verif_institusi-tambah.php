@@ -6,7 +6,7 @@
         <div class="card">
             <h5 class="card-header">Tambah</h5>
             <div class="card-body">
-                <form action="<?= base_url('verif_premix/tambah') ?>" method="post">
+                <form action="<?= base_url('verif_institusi/tambah') ?>" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -23,22 +23,34 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="nama_premix" class="form-label">Nama Premix</label>
-                                <input type="text" class="form-control" id="nama_premix" name="nama_premix" required>
+                                <label for="nama_premix" class="form-label">Jenis Produk</label>
+                                <input type="text" class="form-control" id="nama_premix" placeholder="Masukkan jenis produk" name="nama_premix" required>
                             </div>
                             <div class="mb-3">
                                 <label for="kode_produksi" class="form-label">Kode Produksi</label>
                                 <input type="text" class="form-control" id="kode_produksi" name="kode_produksi" placeholder="Masukkan kode produksi" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="waktu_proses" class="form-label">Waktu Proses</label>
+                                <input type="time" class="form-control" id="waktu_proses" name="waktu_proses" placeholder="Masukkan waktu proses" required>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="sensori" class="form-label">Sensori</label>
-                                <input type="text" class="form-control" id="sensori" name="sensori" placeholder="Masukkan hasil sensori..." required>
+                                <label for="lokasi" class="form-label">Lokasi</label>
+                                <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Masukkan lokasi" required>
                             </div>
                             <div class="mb-3">
-                                <label for="tindakan_koreksi" class="form-label">tindakan_koreksi Koreksi</label>
-                                <input type="text" class="form-control" id="tindakan_koreksi" name="tindakan_koreksi" placeholder="Masukkan tindakan koreksi..." required>
+                                <label for="sebelum" class="form-label">Suhu Produk |Sebelum</label>
+                                <input type="text" class="form-control" id="sebelum" name="sebelum" placeholder="Masukkan hasil sebelum..." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="setelah" class="form-label">Suhu Produk |Setelah</label>
+                                <input type="text" class="form-control" id="setelah" name="setelah" placeholder="Masukkan hasil setelah..." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sensori" class="form-label">Sensori</label>
+                                <input type="text" class="form-control" id="sensori" name="sensori" placeholder="Masukkan hasil sensori..." required>
                             </div>
                             <div class="mb-3">
                                 <label for="catatan" class="form-label">catatan</label>
@@ -48,7 +60,7 @@
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary"><i class="bx bx-save"></i> Simpan</button>
-                        <a href="<?= base_url('verif_premix')?>" class="btn btn-danger"><i class="bx bx-x"></i> Batal</a>
+                        <a href="<?= base_url('verif_institusi')?>" class="btn btn-danger"><i class="bx bx-x"></i> Batal</a>
                     </div>
                 </form>
             </div>
