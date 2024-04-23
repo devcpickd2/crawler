@@ -88,12 +88,12 @@
                                 <td><?= $no; ?></td>
                                 <td><?= $val->date; ?></td>
                                 <td><?= $val->shift; ?></td>
-                                <td><?= $val->jenis_produksi; ?></td>
+                                <td><?= $val->jenis_produk; ?></td>
                                 <td><?= $val->kode_produksi; ?></td>
                                 <td><?= $val->waktu_proses; ?></td>
                                 <td><?= $val->lokasi; ?></td>
-                                <td><?= $val->sebelum; ?></td>
-                                <td><?= $val->sesudah; ?></td>
+                                <td class="text-center"><?= $val->sebelum; ?></td>
+                                <td clas="text-center"><?= $val->sesudah; ?></td>
                                 <td><?= $val->sensori; ?></td>
                                 <td><?= $val->catatan; ?></td>
                                 <td class="text-center">

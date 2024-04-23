@@ -48,13 +48,23 @@ class Verif_Institusi_model extends CI_Model {
 				'rules' => 'required'
 			],
 			[
-				'field' => 'setelah',
-				'label' => 'Setelah',
+				'field' => 'sesudah',
+				'label' => 'Sesudah',
 				'rules' => 'required'
 			],
 			[
 				'field' => 'sensori',
 				'label' => 'Sensori',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'qc',
+				'label' => 'QC',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'produksi',
+				'label' => 'Produksi',
 				'rules' => 'required'
 			],
 			[
@@ -70,26 +80,30 @@ class Verif_Institusi_model extends CI_Model {
 
 		$date = $this->input->post('date');
 		$shift = $this->input->post('shift');
-		$jenis_produksi = $this->input->post('jenis_produksi');
+		$jenis_produk = $this->input->post('jenis_produk');
 		$kode_produksi = $this->input->post('kode_produksi');
 		$waktu_proses = $this->input->post('waktu_proses');
 		$lokasi = $this->input->post('lokasi');
 		$sebelum = $this->input->post('sebelum');
 		$sesudah = $this->input->post('sesudah');
 		$sensori = $this->input->post('sensori');
+		$qc = $this->input->post('qc');
+		$produksi = $this->input->post('produksi');
 		$catatan = $this->input->post('catatan');
 
 		$data = array(
 			'uuid' => $uuid,
 			'date' => $this->input->post('date'),
             'shift' => $this->input->post('shift'),
-            'jenis_produksi' => $this->input->post('jenis_produksi'),
+            'jenis_produk' => $this->input->post('jenis_produk'),
             'kode_produksi' => $this->input->post('kode_produksi'),
             'waktu_proses' => $this->input->post('waktu_proses'),
             'lokasi' => $this->input->post('lokasi'),
             'sebelum' => $this->input->post('sebelum'),
             'sesudah' => $this->input->post('sesudah'),
             'sensori' => $this->input->post('sensori'),
+			'qc' => $this->input->post('qc'),
+			'produksi' => $this->input->post('produksi'),
             'catatan' => $this->input->post('catatan')
 		);
 

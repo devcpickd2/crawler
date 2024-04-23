@@ -23,8 +23,8 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="nama_premix" class="form-label">Jenis Produk</label>
-                                <input type="text" class="form-control" id="nama_premix" placeholder="Masukkan jenis produk" name="nama_premix" required>
+                                <label for="jenis_produk" class="form-label">Jenis Produk</label>
+                                <input type="text" class="form-control" id="jenis_produk" placeholder="Masukkan jenis produk" name="jenis_produk" required>
                             </div>
                             <div class="mb-3">
                                 <label for="kode_produksi" class="form-label">Kode Produksi</label>
@@ -34,26 +34,34 @@
                                 <label for="waktu_proses" class="form-label">Waktu Proses</label>
                                 <input type="time" class="form-control" id="waktu_proses" name="waktu_proses" placeholder="Masukkan waktu proses" required>
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="lokasi" class="form-label">Lokasi</label>
                                 <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Masukkan lokasi" required>
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="sebelum" class="form-label">Suhu Produk |Sebelum</label>
-                                <input type="text" class="form-control" id="sebelum" name="sebelum" placeholder="Masukkan hasil sebelum..." required>
+                                <input type="text" class="form-control" id="sebelum" name="sebelum" placeholder="Masukkan produk sebelum..." required>
                             </div>
                             <div class="mb-3">
-                                <label for="setelah" class="form-label">Suhu Produk |Setelah</label>
-                                <input type="text" class="form-control" id="setelah" name="setelah" placeholder="Masukkan hasil setelah..." required>
+                                <label for="sesudah" class="form-label">Suhu Produk |Sesudah</label>
+                                <input type="text" class="form-control" id="sesudah" name="sesudah" placeholder="Masukkan produk sesudah..." required>
                             </div>
                             <div class="mb-3">
                                 <label for="sensori" class="form-label">Sensori</label>
-                                <input type="text" class="form-control" id="sensori" name="sensori" placeholder="Masukkan hasil sensori..." required>
+                                <input type="text" class="form-control" id="sensori" name="sensori" placeholder="Masukkan produk sensori..." required>
                             </div>
                             <div class="mb-3">
-                                <label for="catatan" class="form-label">catatan</label>
+                                <label for="qc" class="form-label">QC</label>
+                                <input type="text" class="form-control" id="qc" name="qc" placeholder="Masukkan qc..." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="produksi" class="form-label">Produksi</label>
+                                <input type="text" class="form-control" id="produksi" name="produksi" placeholder="Masukkan produksi..." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="catatan" class="form-label">Catatan</label>
                                 <input type="text" class="form-control" id="catatan" name="catatan" placeholder="Masukkan catatan..."   >
                             </div>
                         </div>

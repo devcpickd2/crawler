@@ -113,13 +113,33 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="<?= base_url('pem_tumbling');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Pemeriksaan Proses Tumbling</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('pem_steamer');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Pemeriksaan Pemasakan Dengan Steamer</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('pem_kettle');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Pemeriksaan Pemasakan Produk Di Steam / Cooking Kettle</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="<?= base_url('timbangan');?>" class="menu-link" id ="child">
                             <div data-i18n="Basic Inputs">Peneraan Timbangan</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="<?= base_url('verif_premix');?>" class="menu-link" id ="child">
-                            <div data-i18n="Basic Inputs">Verifikasi Premix</div>
+                        <a href="<?= base_url('pem_thawing');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Pemeriksaan Proses Thawing</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('param_saus');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Parameter Produk Saus Yoshinoya</div>
                         </a>
                     </li>
                     <li class="menu-item">
@@ -132,6 +152,11 @@
                             <div data-i18n="Basic Inputs">Verifikasi Produk Institusi</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('verif_premix');?>" class="menu-link" id ="child">
+                            <div data-i18n="Basic Inputs">Verifikasi Premix</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="menu-item">
@@ -141,15 +166,55 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="form-layouts-vertical.html" class="menu-link">
-                    <div data-i18n="Vertical Form">Suhu</div>
+                  <a href="<?= base_url('benda_asing');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Kontaminasi Benda Asing</div>
                   </a>
                 </li>
-                <!-- <li class="menu-item">
-                  <a href="form-layouts-horizontal.html" class="menu-link">
-                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                <li class="menu-item">
+                  <a href="<?= base_url('suhu_qf');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Suhu Produk Setelah IQF</div>
                   </a>
-                </li> -->
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('verif_pengemasan');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Verifikasi Pengemasan</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('metal_detector');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Metal Detector</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('xray');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan XRAY</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('suhu_proses');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pengecekan Suhu Produk Setiap Tahapan</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('monitor_reject');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Monitoring False Rejection</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('monitor_repack');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Monitoring Proses Repack</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('verif_topping');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Verifikasi Gramasi Topping</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('verif_mesin');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Verifikasi Mesin</div>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="menu-item">
@@ -159,8 +224,83 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="form-layouts-vertical.html" class="menu-link">
-                    <div data-i18n="Vertical Form">Suhu</div>
+                  <a href="<?= base_url('loading');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Loading Produk Untuk Lokal</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('retur');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Produk Retur</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('datang_premix');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Kedatangan Premix</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('drystore');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Pengiriman DryStore</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('kendaraan_incoming');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Kendaraan Incoming</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('raw_material');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Kedatangan Raw Material</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('kemasan_pemasok');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Kemasan Dari Pemasok</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('rice_cooker');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Pemasakan Dengan Rice Cooker</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('pem_noodle');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Pemasakan Noodle</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('verif_sanitasi');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Verifikasi Sanitasi</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('rnd');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Sample Bulanan RND</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('pem_sanitasi');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Sanitasi</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('retain_sample');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Retained Sample Report</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('laboratory');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Laboratory Sample Submission Report</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('suhu_ruang');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemeriksaan Suhu Ruangan</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?= base_url('suhu_coldstorage');?>" class="menu-link">
+                    <div data-i18n="Vertical Form">Pemantauan Suhu Produk Di Cold Storage</div>
                   </a>
                 </li>
               </ul>

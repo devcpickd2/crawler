@@ -31,9 +31,9 @@ class Verif_Institusi extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $insert = $this->verif_institusi_model->insert();
             if ($insert) {
-                $this->session->set_flashdata('success_msg', "Data Verifikasi Premix berhasil disimpan");
+                $this->session->set_flashdata('success_msg', "Data Verifikasi Produk Institusi berhasil disimpan");
             } else {
-                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Verifikasi Premix");
+                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Verifikasi Produk Institusi");
             }
             redirect('verif_institusi');
         }
@@ -72,23 +72,25 @@ class Verif_Institusi extends CI_Controller {
 			$data = array(
 				'date' => $this->input->post('date'),
 				'shift' => $this->input->post('shift'),
-				'jenis_produksi' => $this->input->post('jenis_produksi'),
+				'jenis_produk' => $this->input->post('jenis_produk'),
 				'kode_produksi' => $this->input->post('kode_produksi'),
 				'waktu_proses' => $this->input->post('waktu_proses'),
 				'lokasi' => $this->input->post('lokasi'),
 				'sebelum' => $this->input->post('sebelum'),
-				'setelah' => $this->input->post('setelah'),
+				'sesudah' => $this->input->post('sesudah'),
 				'sensori' => $this->input->post('sensori'),
+				'qc' => $this->input->post('qc'),
+				'produksi' => $this->input->post('produksi'),
 				'catatan' => $this->input->post('catatan')
 			);
 
 			$update = $this->verif_institusi_model->update($uuid, $data);
 
 			if ($update) {
-				$this->session->set_flashdata('success_msg', 'Data verif_institusi berhasil diupdate');
+				$this->session->set_flashdata('success_msg', 'Data Verifikasi Produk Institusi berhasil diupdate');
 				redirect('verif_institusi');
 			} else {
-				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data verif_institusi');
+				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data Verifikasi Institusi');
 				redirect('verif_institusi/edit/' . $uuid);
 			}
 		}
