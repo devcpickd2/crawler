@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="<?= base_url('pem_steamer');?>" class="menu-link" id ="child">
+                        <a href="<?= base_url('pem_masak_steamer');?>" class="menu-link" id ="child">
                             <div data-i18n="Basic Inputs">Pemeriksaan Pemasakan Dengan Steamer</div>
                         </a>
                     </li>

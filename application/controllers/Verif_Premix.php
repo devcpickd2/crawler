@@ -117,7 +117,7 @@ class Verif_Premix extends CI_Controller {
 		$pdf->AddPage();
 		
 		$pdf->SetFont('helvetica', '', 10);
-		$logo = base_url('assets\img\cpi-logo.png');
+		// $logo = base_url('assets\img\cpi-logo.png');
 		$pdf->Image($logo, 15, 10, 30, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		$pdf->SetFont('helvetica', '', 5);
 		$pdf->Cell(0, 10, 'PT CHAROEN POKPHAND INDONESIA - FOOD DIVISION', 0, 1, 'L');;

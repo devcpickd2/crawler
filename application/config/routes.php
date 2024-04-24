@@ -53,6 +53,8 @@ $route['default_controller'] = 'home';
 
 $route['home'] = 'home';
 
+$route['login'] = 'login';
+
 $route['pegawai'] = 'pegawai';
 $route['pegawai/tambah'] = 'pegawai/tambah';
 $route['pegawai/edit/(:any)'] = 'pegawai/edit/$1';
@@ -74,6 +76,10 @@ $route['verif_premix/edit/(:any)'] = 'verif_premix/edit/$1';
 $route['verif_intitusi'] = 'verif_intitusi';
 $route['verif_intitusi/tambah'] = 'verif_intitusi/tambah';
 $route['verif_intitusi/edit/(:any)'] = 'verif_intitusi/edit/$1';
+
+$route['pem_masak_steamer'] = 'pem_masak_steamer';
+$route['pem_masak_steamer/tambah'] = 'pem_masak_steamer/tambah';
+$route['pem_masak_steamer/edit/(:any)'] = 'pem_masak_steamer/edit/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

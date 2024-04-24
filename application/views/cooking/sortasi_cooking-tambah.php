@@ -32,17 +32,17 @@
                             </div>
                             <div class="mb-3">
                                 <label for="jumlah_bahan_sebelum" class="form-label">Jumlah Bahan Sebelum Sortasi</label>
-                                <input type="text" class="form-control" id="jumlah_bahan_sebelum" name="jumlah_bahan_sebelum" placeholder="Masukkan hasil jumlah_bahan_sebelum..." required>
+                                <input type="text" class="form-control" id="jumlah_bahan_sebelum" name="jumlah_bahan_sebelum" placeholder="Masukkan jumlah_bahan_sebelum..." required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="sesuai" class="form-label">Jumlah Bahan Setelah | Sesuai</label>
-                                <input type="text" class="form-control" id="sesuai" name="sesuai" placeholder="Masukkan hasil sesuai..." required>
+                                <input type="text" class="form-control" id="sesuai" name="sesuai" placeholder="Masukkan sesuai..." required>
                             </div>
                             <div class="mb-3">
                                 <label for="tidak_sesuai" class="form-label">Jumlah Bahan Setelah | TDK Sesuai</label>
-                                <input type="text" class="form-control" id="tidak_sesuai" name="tidak_sesuai" placeholder="Masukkan hasil tidak_sesuai..." required>
+                                <input type="text" class="form-control" id="tidak_sesuai" name="tidak_sesuai" placeholder="Masukkan tidak_sesuai..." required>
                             </div>
                             <div class="mb-3">
                                 <label for="tindakan_koreksi" class="form-label">Tindakan Koreksi</label>
