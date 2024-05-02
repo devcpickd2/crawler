@@ -7,7 +7,7 @@ class Pegawai extends CI_Controller {
 	{
 		parent::__construct();
 		// $this->load->model('auth_model');
-		// $this->load->model('departemen_model');
+		$this->load->model('departemen_model');
 		$this->load->model('pegawai_model');
 		$this->load->library('form_validation');
 
@@ -19,6 +19,7 @@ class Pegawai extends CI_Controller {
 	public function index()
 	{
 		$data = array(
+			// 'departemen' => $this->departemen_model->get_all(),
 			'pegawai' => $this->pegawai_model->get_all(),
 			'active_nav' => 'pegawai', 
 		);
@@ -44,11 +45,10 @@ class Pegawai extends CI_Controller {
 			}
 		}
 
-		// $data = array(
-		// 	// 'departemen' => $this->departemen_model->get_all(),
-		// 	// 'plant' => $this->plant_model->get_all(),
-		// 	'active_nav' => 'pegawai', 
-		// );
+		$data = array(
+			'departemen' => $this->departemen_model->get_all(),
+			'active_nav' => 'pegawai', 
+		);
 
 		$this->load->view('partials/head');
 		$this->load->view('pegawai/pegawai-tambah');

@@ -28,8 +28,17 @@
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan nama password..." required>
                             </div>
                             <div class="mb-3">
-                                <label for="departemen" class="form-label">Departemen</label>
-                                <input type="text" class="form-control" id="departemen" name="departemen" placeholder="Masukkan nama departemen..." required>
+                                <!-- <label for="departemen" class="form-label">Departemen</label>
+                                <input type="text" class="form-control" id="departemen" name="departemen" placeholder="Masukkan nama departemen..." required> -->
+                                <label class="form-label font-weight-bold">Departemen</label>
+                                <select name="departemen" class="form-control <?= form_error('departemen') ? 'invalid' : '' ?>" >
+                                    <option disabled selected>Pilih Departemen</option>
+                                    <?php 
+                                    foreach($departemen as $val){ ?>
+                                        <option value="<?= $val->uuid; ?>" <?= set_select('departemen', $val->uuid) ;?>><?= $val->departemen; ?></option>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback <?= !empty(form_error('departemen')) ? 'd-block' : '' ; ?> "><?= form_error('departemen') ?></div>
                             </div>
                             <div class="mb-3">
                                 <label for="tipe_user" class="form-label">Tipe User</label>

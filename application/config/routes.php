@@ -55,6 +55,10 @@ $route['home'] = 'home';
 
 $route['login'] = 'login';
 
+$route['departemen'] = 'departemen';
+$route['departemen/tambah'] = 'departemen/tambah';
+$route['departemen/edit/(:any)'] = 'departemen/edit/$1';
+
 $route['pegawai'] = 'pegawai';
 $route['pegawai/tambah'] = 'pegawai/tambah';
 $route['pegawai/edit/(:any)'] = 'pegawai/edit/$1';

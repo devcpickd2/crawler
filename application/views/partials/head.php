@@ -96,6 +96,31 @@
                             <div data-i18n="Basic Inputs">Pegawai</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('departemen') ?>" class="menu-link">
+                            <div data-i18n="Basic Inputs">Departemen</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Suhu Ruangan & Sanitasi -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Suhu & Sanitasi</span></li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div data-i18n="Form Elements">Suhu dan Sanitasi</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="<?= base_url('suhu') ?>" class="menu-link">
+                            <div data-i18n="Basic Inputs">Suhu Ruangan</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('sanitasi') ?>" class="menu-link">
+                            <div data-i18n="Basic Inputs">Sanitasi</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <!-- Forms & Tables -->

@@ -54,30 +54,20 @@
                                 <td><?= $val->departemen; ?></td>
                                 <td>
                                     <?php
-                                    switch ($val->tipe_user) {
-                                        case 0:
-                                            echo "Admin";
-                                            break;
-                                        case 1:
-                                            echo "Manager";
-                                            break;
-                                        case 2:
-                                            echo "Supervisor";
-                                            break;
-                                        case 3:
-                                            echo "Foreman/Forelady";
-                                            break;
-                                        case 4:
-                                            echo "Staff";
-                                            break;
-                                        case 5:
-                                            echo "QC Inspector";
-                                            break;
-                                        case 6:
-                                            echo "Head Section";
-                                            break;
-                                        default:
-                                            echo "Unknown";
+                                    if ($val->tipe_user == 0) {
+                                        echo "Admin";
+                                    } elseif ($val->tipe_user == 1) {
+                                        echo "Manager";
+                                    } elseif ($val->tipe_user == 2) {
+                                        echo "Supervisor";
+                                    } elseif ($val->tipe_user == 3) {
+                                        echo "Foreman/Forelady";
+                                    } elseif ($val->tipe_user == 4) {
+                                        echo "Staff";
+                                    } elseif ($val->tipe_user == 5) {
+                                        echo "QC Inspector";
+                                    } elseif ($val->tipe_user == 6) {
+                                        echo "Head Section";
                                     }
                                     ?>
                                 </td>
