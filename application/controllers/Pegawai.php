@@ -51,7 +51,7 @@ class Pegawai extends CI_Controller {
 		);
 
 		$this->load->view('partials/head');
-		$this->load->view('pegawai/pegawai-tambah');
+		$this->load->view('pegawai/pegawai-tambah', $data);
 		$this->load->view('partials/footer');
 	}
 }

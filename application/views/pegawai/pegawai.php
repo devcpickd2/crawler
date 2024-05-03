@@ -10,7 +10,7 @@
         </div>
         <hr class="my-5" />
         <!-- Responsive Table -->
-        <div class="card">
+        <!-- <div class="card">
             <h5 class="card-header">Daftar Pegawai</h5>
             <?php if($this->session->flashdata('success_msg')): ?>
             <div class="alert alert-success text-center">
@@ -26,6 +26,44 @@
                 <?= $this->session->flashdata('error_msg') ?>
             </div>
             <br>
+            <?php endif ?> -->
+            <div class="card">
+            <?php if($this->session->flashdata('success_msg')): ?>
+                <div id="successModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Success!</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <?= $this->session->flashdata('success_msg') ?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif ?>
+
+            <?php if($this->session->flashdata('error_msg')): ?>
+                <div id="errorModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Error!</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <?= $this->session->flashdata('error_msg') ?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php endif ?>
 
             <div class="table-responsive text-nowrap">
@@ -71,7 +109,7 @@
                                     }
                                     ?>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                     <a href="<?= base_url('pegawai/edit/' . $val->uuid); ?>" class="btn btn-warning">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
@@ -95,3 +133,18 @@
     </div>
     <!-- / Content -->
 </div>
+<script>
+    $(document).ready(function(){
+        <?php if($this->session->flashdata('success_msg')): ?>
+            $('#successModal').modal('show');
+        <?php endif ?>
+
+        <?php if($this->session->flashdata('error_msg')): ?>
+            $('#errorModal').modal('show');
+        <?php endif ?>
+
+        $('.modal .close').on('click', function() {
+            $(this).closest('.modal').modal('hide');
+        });
+    });
+</script>

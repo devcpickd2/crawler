@@ -80,8 +80,10 @@ class Pegawai_model extends CI_Model {
 
 	}
     public function get_all(){
-        $query = $this->db->get('pegawai');
-        return $query->result(); // Return the result as an array of objects
+        $this->db->select('pegawai.*, departemen.departemen');
+		$this->db->from('pegawai');
+		$this->db->join('departemen', 'departemen.uuid = pegawai.departemen');
+		$query = $this->db->get();
+		return $query->result();
     }
-
 }
