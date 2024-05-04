@@ -36,8 +36,8 @@
                         <p class="mb-4 text-center">Silahkan Login Dengan Akun Anda</p>
                         <form id="formAuthentication" class="mb-3" action="<?= base_url('home');?>" method="POST">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="email" name="email-username" placeholder="Masukan Username Anda" autofocus>
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username Anda" autofocus>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
