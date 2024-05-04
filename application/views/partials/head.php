@@ -112,7 +112,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="<?= base_url('suhu') ?>" class="menu-link">
+                        <a href="<?= base_url('suhu_ruangan') ?>" class="menu-link">
                             <div data-i18n="Basic Inputs">Suhu Ruangan</div>
                         </a>
                     </li>
@@ -404,7 +404,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" href="<?=base_url('logout')?>">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>

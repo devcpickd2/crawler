@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Jakarta');
 use Ramsey\Uuid\Uuid;
 
 
-class Suhu_model extends CI_Model {
+class Suhu_Ruangan_model extends CI_Model {
 	
 	public function __construct()
 	{
