@@ -83,26 +83,28 @@
                 </a>
             </li>
             <!-- Master User -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Master User</span></li>
-            <!-- Forms -->
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-detail"></i>
-                    <div data-i18n="Form Elements">Master Data</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="<?= base_url('pegawai') ?>" class="menu-link">
-                            <div data-i18n="Basic Inputs">Pegawai</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?= base_url('departemen') ?>" class="menu-link">
-                            <div data-i18n="Basic Inputs">Departemen</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            <?php if ($this->session->userdata('type') == '0') : ?>
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Master User</span></li>
+              <!-- Forms -->
+              <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                      <i class="menu-icon tf-icons bx bx-detail"></i>
+                      <div data-i18n="Form Elements">Master Data</div>
+                  </a>
+                  <ul class="menu-sub">
+                      <li class="menu-item">
+                          <a href="<?= base_url('pegawai') ?>" class="menu-link">
+                              <div data-i18n="Basic Inputs">Pegawai</div>
+                          </a>
+                      </li>
+                      <li class="menu-item">
+                          <a href="<?= base_url('departemen') ?>" class="menu-link">
+                              <div data-i18n="Basic Inputs">Departemen</div>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+            <?php endif ?> 
             <!-- Suhu Ruangan & Sanitasi -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Suhu & Sanitasi</span></li>
             <li class="menu-item">

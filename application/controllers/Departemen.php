@@ -8,12 +8,12 @@ class Departemen extends CI_Controller {
 		parent::__construct();
 
 		$this->load->library('form_validation');
-		// $this->load->model('auth_model');
 		$this->load->model('departemen_model');
 		$this->load->model('pegawai_model');
-		// if(!$this->auth_model->current_user()){
-		// 	redirect('login');
-		// }
+		$this->load->model('login_model');
+		if(!$this->login_model->current_user()){
+            redirect('login');
+        }
 	}
 
 	public function index()

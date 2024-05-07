@@ -6,14 +6,14 @@ class Pegawai extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('auth_model');
 		$this->load->model('departemen_model');
 		$this->load->model('pegawai_model');
 		$this->load->library('form_validation');
 
-		// if(!$this->auth_model->current_user()){
-		// 	redirect('login');
-		// }
+		$this->load->model('login_model');
+		if(!$this->login_model->current_user()){
+            redirect('login');
+        }
 	}
 
 	public function index()

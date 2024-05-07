@@ -12,6 +12,12 @@
                     <div class="form-group d-flex align-items-center">
                         <label for="tanggal" class="mr-2">Tanggal:</label>
                         <input type="date" class="form-control mr-2" id="tanggal" name="tanggal">
+                        <select name="shift" class="form-control" required>
+                            <option value="">Pilih Shift</option>
+                            <option value="1">Shift 1</option>
+                            <option value="2">Shift 2</option>
+                            <option value="3">Shift 3</option>
+                        </select>
                         <button type="submit" class="btn btn-info btn-sm"><i class="bx bx-printer"></i>Print PDF</button>
                     </div>
                 </form>
@@ -107,13 +113,13 @@
                                 <td><?= $val->filling_room; ?></td>
                                 <td><?= $val->rice_room; ?></td>
                                 <td><?= $val->noodle_room; ?></td>
-                                <td><?= $val->toping_area; ?></td>
+                                <td><?= $val->topping_area; ?></td>
                                 <td><?= $val->packing_karton; ?></td>
                                 <td><?= $val->dry_T; ?></td>
                                 <td><?= $val->dry_RH; ?></td>
                                 <td><?= $val->cold_fg; ?></td>
                                 <td><?= $val->keterangan; ?></td>
-                                <td><?= $val->qc; ?></td>
+                                <!-- <td><?= $val->qc; ?></td> -->
                                 <td><?= $val->produksi; ?></td>
                                 <td><?= $val->catatan; ?></td>
                                 <td class="text-center">

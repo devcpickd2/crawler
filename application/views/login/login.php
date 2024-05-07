@@ -32,9 +32,15 @@
                                 <span class="app-brand-text demo text-body fw-bolder">E-RTM</span>
                             </a>
                         </div>
+                        <?php if ($this->session->flashdata('error_msg')) { ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?= $this->session->flashdata('error_msg') ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php } ?>
                         <h4 class="mb-2 text-center">Welcome to E-RTM! 👋</h4>
                         <p class="mb-4 text-center">Silahkan Login Dengan Akun Anda</p>
-                        <form id="formAuthentication" class="mb-3" action="<?= base_url('home');?>" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="<?= base_url('login');?>" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username Anda" autofocus>

@@ -13,9 +13,13 @@
                                 <label for="date" class="form-label">Tanggal</label>
                                 <input type="date" class="form-control" id="date" name="date" required>
                             </div>
+                            <!-- <div class="mb-3" id="area"> -->
+                                <!-- AREA -->
+                            <!-- </div> -->
                             <div class="mb-3">
                                 <label for="shift" class="form-label">Shift</label>
-                                <select class="form-select" id="shift" name="shift" required>
+                                <select class="form-select" id="shift" name="shift" onchange="updateTimeOptions()" required>
+                                <!-- <select class="form-select" id="shift" name="shift" onchange="" required> -->
                                     <option value="" disabled selected>Pilih Shift</option>
                                     <option value="1">Shift 1</option>
                                     <option value="2">Shift 2</option>
@@ -23,12 +27,18 @@
                                 </select>
                             </div>
                             <!-- pukul -->
-                            <!-- <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="pukul" class="form-label">Pukul</label>
-                            </div> -->
+                                <select class="form-select" id="pukul" name="pukul" required>
+                                    <option value="" disabled selected>Pilih waktu</option>
+                                    <?php for ($i = 0; $i <= 23; $i++) : ?>
+                                        <option value="<?= "{$i}:00" ?>"><?= "{$i}:00" ?></option>
+                                    <?php endfor ?>
+                                </select>
+                            </div>
                             <div class="mb-3">
                                 <label for="chill_room" class="form-label">Chill Room</label>
-                                <input type="text" class="form-control" id="chill_room" name="chill_room" required>
+                                <input type="text" class="form-control" id="chill_room" name="chill_room" placeholder="Masukkan suhu chill room" required>
                             </div>
                             <div class="mb-3">
                                 <label for="cold_stor1" class="form-label">Cold Storage 1</label>
@@ -93,8 +103,21 @@
                                 <input type="text" class="form-control" id="cold_fg" name="cold_fg" placeholder="Masukkan Cold Stor FG..." required>
                             </div>
                             <div class="mb-3">
-                                <label for="catatan" class="form-label">catatan</label>
-                                <input type="text" class="form-control" id="catatan" name="catatan" placeholder="Masukkan catatan..."   >
+                                <label for="cold_fg" class="form-label">Cold Stor FG</label>
+                                <input type="text" class="form-control" id="cold_fg" name="cold_fg" placeholder="Masukkan Suhu Cold Storage..." required>
+                            </div>
+                             <div class="mb-3">
+                                <label for="keterangan" class="form-label">Keterangan</label>
+                                <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Keterangan...">
+                            </div>
+                            <div class="mb-3">
+                                <label for="produksi" class="form-label">produksi</label>
+                                <select class="form-select" id="produksi" name="produksi" required>
+                                    <option value="" disabled selected>Pilih Nama Produksi</option>
+                                    <option value="">ABA</option>
+                                    <option value="">ABB</option>
+                                    <option value="">ABC</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -108,3 +131,47 @@
     </div>
     <!-- / Content -->
 </div>
+<script>
+    function updateTimeOptions() {
+        const shift = document.getElementById("shift").value;
+        const pukulSelect = document.getElementById("pukul");
+        pukulSelect.innerHTML = "";
+
+        if (shift === "1") {
+            addOption(pukulSelect, "7:00", "7:00");
+            addOption(pukulSelect, "8:00", "8:00");
+            addOption(pukulSelect, "9:00", "9:00");
+            addOption(pukulSelect, "10:00", "10:00");
+            addOption(pukulSelect, "11:00", "11:00");
+            addOption(pukulSelect, "12:00", "12:00");
+            addOption(pukulSelect, "13:00", "13:00");
+            addOption(pukulSelect, "14:00", "14:00");
+        } else if (shift === "2") {
+            addOption(pukulSelect, "15:00", "15:00");
+            addOption(pukulSelect, "16:00", "16:00");
+            addOption(pukulSelect, "17:00", "17:00");
+            addOption(pukulSelect, "18:00", "18:00");
+            addOption(pukulSelect, "19:00", "19:00");
+            addOption(pukulSelect, "20:00", "20:00");
+            addOption(pukulSelect, "21:00", "21:00");
+            addOption(pukulSelect, "22:00", "22:00");
+        } else if (shift === "3") {
+            addOption(pukulSelect, "23:00", "23:00");
+            addOption(pukulSelect, "0:00", "0:00");
+            addOption(pukulSelect, "1:00", "1:00");
+            addOption(pukulSelect, "2:00", "2:00");
+            addOption(pukulSelect, "3:00", "3:00");
+            addOption(pukulSelect, "4:00", "4:00");
+            addOption(pukulSelect, "5:00", "5:00");
+            addOption(pukulSelect, "6:00", "6:00");
+        }
+    }
+
+    function addOption(select, text, value) {
+        const option = document.createElement("option");
+        option.text = text;
+        option.value = value;
+        select.add(option);
+    }
+
+</script>

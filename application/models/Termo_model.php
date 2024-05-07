@@ -53,13 +53,13 @@ class Termo_model extends CI_Model {
 	{
 		$uuid = Uuid::uuid4()->toString();
 
-		$date = $this->input->post('date');
-		$shift = $this->input->post('shift');
-		$kode_termo = $this->input->post('kode_termo');
-		$pukul = $this->input->post('pukul');
-		$hasil_tera = $this->input->post('hasil_tera');
-		$tindakan = $this->input->post('tindakan');
-		$catatan = $this->input->post('catatan');
+		// $date = $this->input->post('date');
+		// $shift = $this->input->post('shift');
+		// $kode_termo = $this->input->post('kode_termo');
+		// $pukul = $this->input->post('pukul');
+		// $hasil_tera = $this->input->post('hasil_tera');
+		// $tindakan = $this->input->post('tindakan');
+		// $catatan = $this->input->post('catatan');
 
 		$data = array(
 			'uuid' => $uuid,

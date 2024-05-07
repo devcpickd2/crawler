@@ -45,7 +45,7 @@ class Login_model extends CI_Model
 	 //        return FALSE;
 	 //    }
 
-		$this->session->set_userdata([self::SESSION_KEY => $user->uuid, 'username' => $user->username, 'type' => $user->type ]);
+		$this->session->set_userdata([self::SESSION_KEY => $user->uuid, 'username' => $user->username, 'type' => $user->tipe_user ]);
 
 		return $this->session->has_userdata(self::SESSION_KEY);
 	}

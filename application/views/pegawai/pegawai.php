@@ -113,12 +113,6 @@
                                     <a href="<?= base_url('pegawai/edit/' . $val->uuid); ?>" class="btn btn-warning">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <a href="<?= base_url('pegawai/edituser/' . $val->uuid); ?>" class="btn btn-info">
-                                        <i class="fas fa-info-circle"></i> Uname
-                                    </a>
-                                    <a href="<?= base_url('pegawai/editpass/' . $val->uuid); ?>" class="btn btn-info">
-                                        <i class="fas fa-info-circle"></i> Pass
-                                    </a>
                                 </td>
                             </tr>
                         <?php

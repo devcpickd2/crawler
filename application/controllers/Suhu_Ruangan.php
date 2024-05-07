@@ -8,6 +8,10 @@ class Suhu_Ruangan extends CI_Controller {
         parent::__construct();
         $this->load->model('suhu_ruangan_model');
         $this->load->library('form_validation');
+        $this->load->model('login_model');
+		if(!$this->login_model->current_user()){
+            redirect('login');
+        }
     }
 
     public function index()
@@ -72,11 +76,26 @@ class Suhu_Ruangan extends CI_Controller {
 			$data = array(
 				'date' => $this->input->post('date'),
 				'shift' => $this->input->post('shift'),
-				'nama_premix' => $this->input->post('nama_premix'),
-				'kode_produksi' => $this->input->post('kode_produksi'),
-				'sensori' => $this->input->post('sensori'),
-				'tindakan_koreksi' => $this->input->post('tindakan_koreksi'),
-				'catatan' => $this->input->post('catatan')
+                'pukul' => $this->input->post('pukul'),
+                'chill_room' => $this->input->post('chill_room'),
+                'cold_stor1' => $this->input->post('cold_stor1'),
+                'cold_stor2' => $this->input->post('cold_stor2'),
+                'anteroom' => $this->input->post('anteroom'),
+                'sea_T' => $this->input->post('sea_T'),
+                'sea_RH' => $this->input->post('sea_RH'),
+                'prep_room' => $this->input->post('prep_room'),
+                'cooking_room' => $this->input->post('cooking_room'),
+                'filling_room' => $this->input->post('filling_room'),
+                'rice_room' => $this->input->post('rice_room'),
+                'noodle_room' => $this->input->post('noodle_room'),
+                'topping_are' => $this->input->post('topping_are'),
+                'packing_karton' => $this->input->post('packing_karton'),
+                'dry_T' => $this->input->post('dry_T'),
+                'dry_RH' => $this->input->post('dry_RH'),
+                'cold_fg' => $this->input->post('cold_fg'),
+                'keterangan' => $this->input->post('keterangan'),
+                'produksi' => $this->input->post('produksi'),
+                'catatan' => $this->input->post('catatan')
 			);
 
 			$update = $this->suhu_ruangan_model->update($uuid, $data);
@@ -105,9 +124,14 @@ class Suhu_Ruangan extends CI_Controller {
 	public function print_pdf()
 	{
 		$tanggal = $this->input->post('tanggal');
+        $shift = $this->input->post('shift');
 		require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-		$suhu_ruangan = $this->suhu_ruangan_model->get_by_date($tanggal);
+		$suhu_ruangan = $this->suhu_ruangan_model->get_by_date($tanggal); // ori
+		$suhu_ruangan = $this->suhu_ruangan_model->get_by_date_and_shift($tanggal, $shift); 
+
+        var_dump($suhu_ruangan);
+        exit();
 
 		$pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
 		$pdf->setPrintHeader(false);

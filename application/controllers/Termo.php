@@ -8,6 +8,10 @@ class Termo extends CI_Controller {
         parent::__construct();
         $this->load->model('termo_model');
         $this->load->library('form_validation');
+		$this->load->model('login_model');
+		if(!$this->login_model->current_user()){
+            redirect('login');
+        }
     }
 
     public function index()
