@@ -79,11 +79,32 @@ class Pegawai_model extends CI_Model {
 		return($this->db->affected_rows() > 0) ? true :false;
 
 	}
+
+	public function update($uuid, $data)
+    {
+        $this->db->where('uuid', $uuid);
+        $this->db->update('pegawai', $data);
+        return ($this->db->affected_rows() > 0) ? true : false;
+    }
+
     public function get_all(){
         $this->db->select('pegawai.*, departemen.departemen');
 		$this->db->from('pegawai');
 		$this->db->join('departemen', 'departemen.uuid = pegawai.departemen');
 		$query = $this->db->get();
 		return $query->result();
+    }
+	public function get_by_uuid($uuid)
+    {
+        $this->db->where('uuid', $uuid);
+        $query = $this->db->get('pegawai');
+        return $query->row();
+    }
+
+    public function delete($uuid)
+    {
+        $this->db->where('uuid', $uuid);
+        $this->db->delete('pegawai');
+        return ($this->db->affected_rows() > 0) ? true : false;
     }
 }

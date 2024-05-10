@@ -54,4 +54,58 @@ class Pegawai extends CI_Controller {
 		$this->load->view('pegawai/pegawai-tambah', $data);
 		$this->load->view('partials/footer');
 	}
+
+	public function edit($uuid)
+	{
+		$data = array(
+			'pegawai' => $this->pegawai_model->get_by_uuid($uuid),
+			'departemen' => $this->departemen_model->get_all(),
+		);
+		// var_dump($data);
+		// exit();
+		// $data['pegawai'] = $this->pegawai_model->get_by_uuid($uuid);
+
+		$this->load->view('partials/head', $data);
+		$this->load->view('pegawai/pegawai-edit', $data);
+		$this->load->view('partials/footer');
+	}
+
+	public function update()
+	{
+		$rules = $this->pegawai_model->rules();
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == FALSE) {
+			// Validasi form gagal, kembali ke halaman edit dengan menampilkan pesan kesalahan
+			$uuid = $this->input->post('uuid');
+			$data['pegawai'] = $this->pegawai_model->get_by_uuid($uuid);
+
+			$this->load->view('partials/head');
+			$this->load->view('pegawai/pegawai-edit', $data);
+			$this->load->view('partials/footer');
+		} else {
+			// Validasi form berhasil, lanjutkan dengan pembaruan data
+			$uuid = $this->input->post('uuid');
+			$data = array(
+				'nama' => $this->input->post('nama'),
+				'email' => $this->input->post('email'),
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'departemen' => $this->input->post('departemen'),
+				'tipe_user' => $this->input->post('tipe_user')
+			);
+
+			$update = $this->pegawai_model->update($uuid, $data);
+			var_dump($update);
+			exit();
+
+			if ($update) {
+				$this->session->set_flashdata('success_msg', 'Data pegawai berhasil diupdate');
+				redirect('pegawai');
+			} else {
+				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data pegawai');
+				redirect('pegawai/edit/' . $uuid);
+			}
+		}
+	}
 }

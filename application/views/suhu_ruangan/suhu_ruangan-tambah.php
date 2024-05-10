@@ -102,10 +102,6 @@
                                 <label for="cold_fg" class="form-label">Cold Stor FG</label>
                                 <input type="text" class="form-control" id="cold_fg" name="cold_fg" placeholder="Masukkan Cold Stor FG..." required>
                             </div>
-                            <div class="mb-3">
-                                <label for="cold_fg" class="form-label">Cold Stor FG</label>
-                                <input type="text" class="form-control" id="cold_fg" name="cold_fg" placeholder="Masukkan Suhu Cold Storage..." required>
-                            </div>
                              <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Keterangan...">
@@ -114,9 +110,9 @@
                                 <label for="produksi" class="form-label">produksi</label>
                                 <select class="form-select" id="produksi" name="produksi" required>
                                     <option value="" disabled selected>Pilih Nama Produksi</option>
-                                    <option value="">ABA</option>
-                                    <option value="">ABB</option>
-                                    <option value="">ABC</option>
+                                    <option value="ABA">ABA</option>
+                                    <option value="ABB">ABB</option>
+                                    <option value="ABC">ABC</option>
                                 </select>
                             </div>
                         </div>

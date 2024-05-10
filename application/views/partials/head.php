@@ -123,6 +123,11 @@
                             <div data-i18n="Basic Inputs">Sanitasi</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url('pem_sanitasi') ?>" class="menu-link">
+                            <div data-i18n="Basic Inputs">Pemeriksaan Sanitasi</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <!-- Forms & Tables -->

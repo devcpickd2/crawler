@@ -54,7 +54,9 @@ class Suhu_Ruangan extends CI_Controller {
 	public function edit($uuid)
 	{
 		$data['suhu_ruangan'] = $this->suhu_ruangan_model->get_by_uuid($uuid);
-
+//         var_dump($data);
+//         exit()
+// ;
 		$this->load->view('partials/head', $data);
 		$this->load->view('suhu_ruangan/suhu_ruangan-edit', $data);
 		$this->load->view('partials/footer');
@@ -88,7 +90,7 @@ class Suhu_Ruangan extends CI_Controller {
                 'filling_room' => $this->input->post('filling_room'),
                 'rice_room' => $this->input->post('rice_room'),
                 'noodle_room' => $this->input->post('noodle_room'),
-                'topping_are' => $this->input->post('topping_are'),
+                'topping_area' => $this->input->post('topping_area'),
                 'packing_karton' => $this->input->post('packing_karton'),
                 'dry_T' => $this->input->post('dry_T'),
                 'dry_RH' => $this->input->post('dry_RH'),
@@ -107,6 +109,8 @@ class Suhu_Ruangan extends CI_Controller {
 				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data suhu_ruangan');
 				redirect('suhu_ruangan/edit/' . $uuid);
 			}
+            var_dump($data);
+            exit();
 		}
 	}
 
@@ -127,7 +131,7 @@ class Suhu_Ruangan extends CI_Controller {
         $shift = $this->input->post('shift');
 		require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-		$suhu_ruangan = $this->suhu_ruangan_model->get_by_date($tanggal); // ori
+		// $suhu_ruangan = $this->suhu_ruangan_model->get_by_date($tanggal); // ori
 		$suhu_ruangan = $this->suhu_ruangan_model->get_by_date_and_shift($tanggal, $shift); 
 
         var_dump($suhu_ruangan);
