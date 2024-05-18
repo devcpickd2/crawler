@@ -88,6 +88,10 @@ $route['suhu_ruangan'] = 'suhu_ruangan';
 $route['suhu_ruangan/tambah'] = 'suhu_ruangan/tambah';
 $route['suhu_ruangan/edit/(:any)'] = 'suhu_ruangan/edit/$1';
 
+$route['sanitasi'] = 'sanitasi';
+$route['sanitasi/tambah'] = 'sanitasi/tambah';
+$route['sanitasi/edit/(:any)'] = 'sanitasi/edit/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['logout'] = 'login/logout';
