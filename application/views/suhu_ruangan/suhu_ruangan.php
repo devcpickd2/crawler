@@ -88,7 +88,11 @@
                             <th>Noodle Room</th>
                             <th>Topping Area</th>
                             <th>Packing (karton)</th>
-                            <th>cold stor. FG</th>
+                            <th>Dry T</th>
+                            <th>Dry Rh</th>
+                            <th>Cold stor. FG</th>
+                            <th>Catatan</th>
+                            <th>Produksi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -122,7 +126,7 @@
                                 <!-- <td><?= $val->qc; ?></td> -->
                                 <td><?= $val->produksi; ?></td>
                                 <td><?= $val->catatan; ?></td>
-                                <td class="text-center">
+                                <td>
                                     <a href="<?= base_url('suhu_ruangan/edit/' . $val->uuid); ?>" class="btn btn-warning">
                                         <i class="bx bx-edit"></i> Edit
                                     </a>

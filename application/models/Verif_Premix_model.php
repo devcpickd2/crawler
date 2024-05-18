@@ -8,7 +8,7 @@ class Verif_Premix_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('auth_model');
+		$this->load->model('login_model');
 	}
 	public function rules(){
 		return [
@@ -77,6 +77,7 @@ class Verif_Premix_model extends CI_Model {
 
 	}
     public function get_all(){
+		$this->db->order_by('date', 'DESC');
         $query = $this->db->get('verifikasi_premix');
         return $query->result();
     }

@@ -182,6 +182,7 @@ class Suhu_Ruangan_model extends CI_Model {
         return ($this->db->affected_rows() > 0) ? true : false;
     }
     public function get_all(){
+        $this->db->order_by('date', 'DESC');
         $query = $this->db->get('suhu_ruangan');
         return $query->result();
     }

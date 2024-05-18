@@ -77,6 +77,7 @@ class Termo_model extends CI_Model {
 
 	}
     public function get_all(){
+        $this->db->order_by('date', 'DESC');
         $query = $this->db->get('peneraan_termo');
         return $query->result();
     }

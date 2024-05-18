@@ -182,6 +182,7 @@ class Pem_Masak_Steamer_model extends CI_Model {
 
 	}
     public function get_all(){
+		$this->db->order_by('date', 'DESC');
         $query = $this->db->get('pem_masak_steamer');
         return $query->result();
     }

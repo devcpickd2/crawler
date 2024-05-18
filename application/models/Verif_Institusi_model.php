@@ -112,6 +112,7 @@ class Verif_Institusi_model extends CI_Model {
 
 	}
     public function get_all(){
+		$this->db->order_by('date', 'DESC');
         $query = $this->db->get('verifikasi_institusi');
         return $query->result();
     }

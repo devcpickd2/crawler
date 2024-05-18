@@ -109,8 +109,6 @@ class Suhu_Ruangan extends CI_Controller {
 				$this->session->set_flashdata('error_msg', 'Gagal mengupdate data suhu_ruangan');
 				redirect('suhu_ruangan/edit/' . $uuid);
 			}
-            var_dump($data);
-            exit();
 		}
 	}
 

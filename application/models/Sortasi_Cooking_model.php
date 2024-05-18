@@ -89,6 +89,7 @@ class Sortasi_Cooking_model extends CI_Model {
 
 	}
     public function get_all(){
+		$this->db->order_by('date', 'DESC');
         $query = $this->db->get('sortasi_tdksesuai');
         return $query->result();
     }
