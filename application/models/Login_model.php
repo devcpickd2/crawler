@@ -35,16 +35,6 @@ class Login_model extends CI_Model
 			return FALSE;
 		}
 
-		// if ($user->hak_akses === NULL) {
-	 //        return FALSE;
-	 //    }
-		
-		// $hakAkses = json_decode($user->hak_akses);
-
-	 //    if (!in_array('pga', $hakAkses)) {
-	 //        return FALSE;
-	 //    }
-
 		$this->session->set_userdata([self::SESSION_KEY => $user->uuid, 'username' => $user->username, 'type' => $user->tipe_user ]);
 
 		return $this->session->has_userdata(self::SESSION_KEY);

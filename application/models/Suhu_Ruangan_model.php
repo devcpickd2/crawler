@@ -128,28 +128,30 @@ class Suhu_Ruangan_model extends CI_Model {
     public function insert()
     {
         $uuid = Uuid::uuid4()->toString();
-        // $date = $this->input->post('date');
-        // $shift = $this->input->post('shift');
-        // $pukul = $this->input->post('pukul');
-        // $chill_room = $this->input->post('chill_room');
-        // $cold_stor1 = $this->input->post('cold_stor1');
-        // $cold_stor2 = $this->input->post('cold_stor2');
-        // $anteroom = $this->input->post('anteroom');
-        // $sea_T = $this->input->post('sea_T');
-        // $sea_RH = $this->input->post('sea_RH');
-        // $prep_room = $this->input->post('prep_room');
-        // $cooking_room = $this->input->post('cooking_room');
-        // $filling_room = $this->input->post('filling_room');
-        // $rice_room = $this->input->post('rice_room');
-        // $noodle_room = $this->input->post('noodle_room');
-        // $topping_are = $this->input->post('topping_are');
-        // $packing_karton = $this->input->post('packing_karton');
-        // $dry_T = $this->input->post('dry_T');
-        // $dry_RH = $this->input->post('dry_RH');
-        // $cold_fg = $this->input->post('cold_fg');
-        // $keterangan = $this->input->post('keterangan');
-        // $produksi = $this->input->post('produksi');
-        // $catatan = $this->input->post('catatan');
+
+        // ini ga berpengaruh sebenernya
+        $date = $this->input->post('date');
+        $shift = $this->input->post('shift');
+        $pukul = $this->input->post('pukul');
+        $chill_room = $this->input->post('chill_room');
+        $cold_stor1 = $this->input->post('cold_stor1');
+        $cold_stor2 = $this->input->post('cold_stor2');
+        $anteroom = $this->input->post('anteroom');
+        $sea_T = $this->input->post('sea_T');
+        $sea_RH = $this->input->post('sea_RH');
+        $prep_room = $this->input->post('prep_room');
+        $cooking_room = $this->input->post('cooking_room');
+        $filling_room = $this->input->post('filling_room');
+        $rice_room = $this->input->post('rice_room');
+        $noodle_room = $this->input->post('noodle_room');
+        $topping_area = $this->input->post('topping_area');
+        $packing_karton = $this->input->post('packing_karton');
+        $dry_T = $this->input->post('dry_T');
+        $dry_RH = $this->input->post('dry_RH');
+        $cold_fg = $this->input->post('cold_fg');
+        $keterangan = $this->input->post('keterangan');
+        $produksi = $this->input->post('produksi');
+        $catatan = $this->input->post('catatan');
 
         $data = array(
             'uuid' => $uuid,
@@ -174,15 +176,20 @@ class Suhu_Ruangan_model extends CI_Model {
             'cold_fg' => $this->input->post('cold_fg'),
             'keterangan' => $this->input->post('keterangan'),
             'produksi' => $this->input->post('produksi'),
+            'qc' => $this->session->userdata('user_uuid'),
             'catatan' => $this->input->post('catatan')
         );
-
-
         $this->db->insert('suhu_ruangan', $data);
         return ($this->db->affected_rows() > 0) ? true : false;
     }
     public function get_all(){
-        $this->db->order_by('date', 'DESC');
+        // $this->db->order_by('created_at', 'DESC');
+        // $query = $this->db->get('suhu_ruangan');
+        // return $query->result();
+
+        $this->db->select('suhu_ruangan.*, pegawai.nama as nama_pegawai');
+        $this->db->join('pegawai', 'pegawai.uuid = suhu_ruangan.qc', 'left');
+        $this->db->order_by('suhu_ruangan.created_at', 'DESC');
         $query = $this->db->get('suhu_ruangan');
         return $query->result();
     }

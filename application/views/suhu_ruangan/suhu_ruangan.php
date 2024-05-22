@@ -91,8 +91,10 @@
                             <th>Dry T</th>
                             <th>Dry Rh</th>
                             <th>Cold stor. FG</th>
-                            <th>Catatan</th>
+                            <th>Keterangan</th>
                             <th>Produksi</th>
+                            <th>QC</th>
+                            <!-- <th>Catatan</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -123,9 +125,9 @@
                                 <td><?= $val->dry_RH; ?></td>
                                 <td><?= $val->cold_fg; ?></td>
                                 <td><?= $val->keterangan; ?></td>
-                                <!-- <td><?= $val->qc; ?></td> -->
                                 <td><?= $val->produksi; ?></td>
-                                <td><?= $val->catatan; ?></td>
+                                <td><?= $val->nama_pegawai; ?></td>
+                                <!-- <td><?= $val->catatan; ?></td> -->
                                 <td>
                                     <a href="<?= base_url('suhu_ruangan/edit/' . $val->uuid); ?>" class="btn btn-warning">
                                         <i class="bx bx-edit"></i> Edit

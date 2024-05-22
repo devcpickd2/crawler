@@ -77,7 +77,7 @@ class Timbangan_model extends CI_Model {
 
 	}
     public function get_all(){
-		$this->db->order_by('date', 'DESC');
+		$this->db->order_by('created_at', 'DESC');
         $query = $this->db->get('peneraan_timbangan');
         return $query->result();
     }

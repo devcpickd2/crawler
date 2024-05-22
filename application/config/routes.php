@@ -88,6 +88,10 @@ $route['suhu_ruangan'] = 'suhu_ruangan';
 $route['suhu_ruangan/tambah'] = 'suhu_ruangan/tambah';
 $route['suhu_ruangan/edit/(:any)'] = 'suhu_ruangan/edit/$1';
 
+$route['pem_sanitasi'] = 'pem_sanitasi';
+$route['pem_sanitasi/tambah'] = 'pem_sanitasi/tambah';
+$route['pem_sanitasi/edit/(:any)'] = 'pem_sanitasi/edit/$1';
+
 $route['sanitasi'] = 'sanitasi';
 $route['sanitasi/tambah'] = 'sanitasi/tambah';
 $route['sanitasi/edit/(:any)'] = 'sanitasi/edit/$1';

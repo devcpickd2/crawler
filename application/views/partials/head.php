@@ -369,9 +369,23 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Search -->
-              <!-- /Search -->
+                <?php
+                  $username = $this->session->userdata('username');
+                  $greeting = "";
 
+                  date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu sesuai kebutuhan
+                  
+                  $current_hour = date('H');
+                  
+                  if ($current_hour < 12) {
+                      $greeting = "Selamat Pagi";
+                  } elseif ($current_hour < 18) {
+                      $greeting = "Selamat Siang";
+                  } else {
+                      $greeting = "Selamat Malam";
+                  }
+              ?>
+              <span class="fw-semibold d-block">Halo, <?= $username; ?> <?= $greeting; ?> 🤗</span>
               <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                 <!-- User -->
@@ -391,8 +405,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">Halo, <?php echo $nama_pegawai; ?></span>
-                            <small class="text-muted"><?php echo $tipe_user; ?></small>
+                            <span class="fw-semibold d-block">Hi, <?= $this->session->userdata('username');?></span>
+                            <small class="text-muted">Selamat Bergabung</small>
                           </div>
                         </div>
                       </a>
@@ -410,15 +424,6 @@
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
                       </a>
                     </li>
                     <li>

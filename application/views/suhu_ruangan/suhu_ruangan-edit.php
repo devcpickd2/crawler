@@ -12,15 +12,11 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" id="date" name="date" value="<?= $suhu_ruangan->date ?>">
+                                <input type="date" class="form-control" id="date" name="date" value="<?= $suhu_ruangan->date ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label for="shift" class="form-label">Shift</label>
-                                <select class="form-select" id="shift" name="shift" disabled>
-                                    <option value="1" <?= ($suhu_ruangan->shift == 1) ? 'selected' : '' ?>>Shift 1</option>
-                                    <option value="2" <?= ($suhu_ruangan->shift == 2) ? 'selected' : '' ?>>Shift 2</option>
-                                    <option value="3" <?= ($suhu_ruangan->shift == 3) ? 'selected' : '' ?>>Shift 3</option>
-                                </select>
+                                <input type="text" name="shift" id="shift" value="<?= $suhu_ruangan->shift ?>" class="form-control" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="pukul" class="form-label">Pukul</label>
@@ -97,11 +93,12 @@
                                 <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $suhu_ruangan->keterangan ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="produksi" class="form-label">produksi</label>
-                                <select class="form-select" id="produksi" name="produksi">
-                                    <option value="1" <?= ($suhu_ruangan->produksi == 1) ? 'selected' : '' ?>>ABA</option>
-                                    <option value="2" <?= ($suhu_ruangan->produksi == 2) ? 'selected' : '' ?>>ABB</option>
-                                    <option value="3" <?= ($suhu_ruangan->produksi == 3) ? 'selected' : '' ?>>ABC</option>
+                                <label for="produksi" class="form-label">Produksi</label>
+                                <select class="form-select" id="produksi" name="produksi" required>
+                                    <option value="" disabled <?= is_null($suhu_ruangan->produksi) ? 'selected' : '' ?>>Pilih Nama Produksi</option>
+                                    <option value="Ardillla" <?= ($suhu_ruangan->produksi == 'Ardillla') ? 'selected' : '' ?>>Ardillla</option>
+                                    <option value="Khoirunnisa" <?= ($suhu_ruangan->produksi == 'Khoirunnisa') ? 'selected' : '' ?>>Khoirunnisa</option>
+                                    <option value="Suntoro" <?= ($suhu_ruangan->produksi == 'Suntoro') ? 'selected' : '' ?>>Suntoro</option>
                                 </select>
                             </div>
                         </div>

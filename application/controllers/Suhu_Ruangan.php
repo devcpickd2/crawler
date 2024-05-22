@@ -67,8 +67,20 @@ class Suhu_Ruangan extends CI_Controller {
 		// Form validation rules
 		$rules = $this->suhu_ruangan_model->rules();
 		$this->form_validation->set_rules($rules);
-
+        
 		if ($this->form_validation->run() == FALSE) {
+
+            // ini kalau error jadi nge bug wkkw
+            // bagusnya mah di tampilin (opsional)
+            
+            // Get validation errors
+            // $errors = validation_errors();
+
+            // $data['errors'] = $errors;
+
+            // var_dump($errors);
+            // exit();
+
 			$this->load->view('partials/head');
 			$this->load->view('suhu_ruangan/suhu_ruangan-edit');
 			$this->load->view('partials/footer');
