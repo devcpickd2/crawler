@@ -120,7 +120,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="<?= base_url('sanitasi') ?>" class="menu-link">
-                            <div data-i18n="Basic Inputs">Sanitasi</div>
+                            <div data-i18n="Basic Inputs">Sanitasi Kebersihaan Ruangan</div>
                         </a>
                     </li>
                     <li class="menu-item">

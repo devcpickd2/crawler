@@ -47,10 +47,10 @@
                             <div class="mb-3">
                                 <label for="produksi" class="form-label">Produksi</label>
                                 <select class="form-select" id="produksi" name="produksi" required>
-                                    <option value="" disabled <?= is_null($suhu_ruangan->produksi) ? 'selected' : '' ?>>Pilih Nama Produksi</option>
-                                    <option value="Ardillla" <?= ($suhu_ruangan->produksi == 'Ardillla') ? 'selected' : '' ?>>Ardillla</option>
-                                    <option value="Khoirunnisa" <?= ($suhu_ruangan->produksi == 'Khoirunnisa') ? 'selected' : '' ?>>Khoirunnisa</option>
-                                    <option value="Suntoro" <?= ($suhu_ruangan->produksi == 'Suntoro') ? 'selected' : '' ?>>Suntoro</option>
+                                    <option value="" disabled <?= is_null($pem_sanitasi->produksi) ? 'selected' : '' ?>>Pilih Nama Produksi</option>
+                                    <option value="Ardillla" <?= ($pem_sanitasi->produksi == 'Ardillla') ? 'selected' : '' ?>>Ardillla</option>
+                                    <option value="Khoirunnisa" <?= ($pem_sanitasi->produksi == 'Khoirunnisa') ? 'selected' : '' ?>>Khoirunnisa</option>
+                                    <option value="Suntoro" <?= ($pem_sanitasi->produksi == 'Suntoro') ? 'selected' : '' ?>>Suntoro</option>
                                 </select>
                             </div>
                             <div class="mb-3">
