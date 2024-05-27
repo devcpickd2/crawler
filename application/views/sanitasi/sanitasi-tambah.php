@@ -12,10 +12,12 @@
                                 <input type="date" class="form-control" id="date" name="date" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="waktu" class="form-label">Waktu</label>
-                        <input type="time" class="form-control" id="waktu" name="waktu" required>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="waktu" class="form-label">Waktu</label>
+                                <input type="time" class="form-control" id="waktu" name="waktu" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="area" class="form-label">Area</label>
@@ -96,8 +98,20 @@
 </script> -->
 <script>
     const areas = {
-        "CHILLROOM RM": ["Lantai", "Dinding", "Kurtain", "Pintu"],
-        "COLD STORAGE 1 RM": ["Langit-langit", "AC", "Rak", "Lampu"],
+        "CHILLROOM RM": ["Lantai", "Dinding", "Kurtain", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
+        "COLD STORAGE 1 RM": ["Lantai", "Dinding", "Kurtain", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
+        "COLD STORAGE 2 RM":["Lantai", "Dinding", "Kurtain", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
+        "SEASONING":["Lantai", "Dinding", "Kurtain", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover", "PemisahaanAlergendannon Allergen", "TerdapatTagging"],
+        "PREPARTION ROOM":["Lantai", "Dinding", "Pintu","Langit-langit", "SaluranAirBuangan", "LampudanCover", "VegetableWashingMachine", "Slicer", "PeelingMachine", "VacuumTumbler"],
+        "COOKING":["Lantai", "Dinding", "Pintu","Langit-langit", "SaluranAirBuangan", "LampudanCover", "AlcoCookingMixer", "TitingKettle","Exhaust", "SirFryer(PROVISUR)", "Steamer", "BowlCutter"],
+        "FILLING ROOM":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "SaluranAirBuangan", "LampudanCover", "FillingMachine", "VacummCoolingMachine","Sealer1", "Sealer2", "FillerManual1", "FillerManual2"],
+        "RICE COOKING & NOODLE BOILING ROOM":["Lantai", "Dinding", "Pintu","Langit-langit", "SaluranAirBuangan", "LampudanCover", "RiceWasher", "RiceFillingMachine","RiceCooker", "LineConveyor", "Boiling, Washing, CoolingShockMachine"],
+        "NOODLE MAKING ROOM":["Lantai", "Dinding", "Pintu","Langit-langit", "SaluranAirBuangan", "LampudanCover", "Vacuum Mixer", "Aging Machine","Roller Machine", "Cutting & Sitting"],
+        "TOPPING AREA":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "SaluranAirBuangan", "LampudanCover"],
+        "PACKING":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "SaluranAirBuangan", "LampudanCover", "PackingMachine", "TraySealer","MetalDetector&Rejector", "Xraydetector&Rejector", "LineConveyor", "InkjetPrinterPlastik"],
+        "IQF":["DindingLuar ", "DindingDalam", "RuangdalamIqf","ConveyorIQF"],
+        "COLD STORAGE FG":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
+        "DRY STORE":["Lantai", "Dinding", "Kurtan", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "TerdapatTagging", "LampudanCover"],
     };
 
     const areaSelect = document.getElementById("area");
@@ -115,19 +129,45 @@
             const tindakanKoreksiName = `tindakan_koreksi[${field}]`;
 
             lokasiDiv.innerHTML += `
-                <div class="mb-3">
-                    <label for="${field}" class="form-label">${field}</label>
-                    <textarea class="form-control" id="${field}" name="${kondisiName}" rows="3" placeholder="Masukkan kondisi ${field}"></textarea>
+            <div class="row mb-2">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="${field}" class="form-label">${field}</label>
+                        </div>
+                    </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type ="text" class="form-control" id="${field}" name="${kondisiName}"placeholder="Masukkan kondisi ${field}">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <textarea class="form-control" id="${field}" name="${masalahName}" rows="3" placeholder="Masukkan masalah ${field}"></textarea>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type ="text" class="form-control" id="${field}" name="${masalahName}"placeholder="Masukkan masalah ${field}">
+                    </div>    
                 </div>
-                <div class="mb-3">
-                    <textarea class="form-control" id="${field}" name="${tindakanKoreksiName}" rows="3" placeholder="Masukkan tindakan koreksi ${field}"></textarea>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type ="text" class="form-control" id="${field}" name="${tindakanKoreksiName}"placeholder="Masukkan tindakan koreksi ${field}">
+                    </div>    
                 </div>
+            </div>    
             `;
         });
     });
+
+    var inputDate = document.getElementById('date');
+    var inputTime = document.getElementById('waktu');
+
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = String(now.getMonth() + 1).padStart(2, '0');
+    var day = String(now.getDate()).padStart(2, '0');
+    var hours = String(now.getHours()).padStart(2, '0');
+    var minutes = String(now.getMinutes()).padStart(2, '0');
+
+    // Atur nilai input tanggal dan waktu ke tanggal dan waktu saat ini
+    inputDate.value = year + '-' + month + '-' + day;
+    inputTime.value = hours + ':' + minutes;
 </script>
 
 

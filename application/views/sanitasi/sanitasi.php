@@ -91,7 +91,7 @@
                             <th>Dry Rh</th>
                             <th>Cold stor. FG</th> -->
                             <th>Area</th>
-                            <th>Lokasi</th>
+                            <!-- <th>Lokasi</th> -->
                             <th>Kondisi</th>
                             <th>Tindakan</th>
                             <!-- <th>Keterangan</th> -->
@@ -127,7 +127,7 @@
                                 <td><?= $val->dry_RH; ?></td>
                                 <td><?= $val->cold_fg; ?></td> -->
                                 <td><?= $val->area; ?></td>
-                                <td><?= $val->lokasi; ?></td>
+                                <!-- <td><?= $val->lokasi; ?></td> -->
                                 <td><?= $val->kondisi; ?></td>
                                 <td><?= $val->tindakan_koreksi; ?></td>
                                 <!-- <td><?= $val->keterangan; ?></td> -->
@@ -135,12 +135,12 @@
                                 <td><?= $val->nama_pegawai; ?></td>
                                 <!-- <td><?= $val->catatan; ?></td> -->
                                 <td>
-                                    <a href="<?= base_url('sanitasi/edit/' . $val->uuid); ?>" class="btn btn-warning">
+                                    <!-- <a href="<?= base_url('sanitasi/edit/' . $val->uuid); ?>" class="btn btn-warning">
                                         <i class="bx bx-edit"></i> Edit
-                                    </a>
-                                    <!-- <a href="<?= base_url('sanitasi/print_pdf/' . $val->uuid); ?>" class="btn btn-info" target="_blank">
-                                        <i class="bx bx-printer"></i> Print
                                     </a> -->
+                                    <a href="<?= base_url('sanitasi/print_pdf/' . $val->uuid); ?>" class="btn btn-info" target="_blank">
+                                        <i class="bx bx-printer"></i> Print
+                                    </a>
                                 </td>
                             </tr>
                         <?php

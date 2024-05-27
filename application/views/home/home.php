@@ -162,6 +162,8 @@
                   </div>
                 </div>
                 <!--/ Total Revenue -->
+                <!-- <h1>Chart Suhu Ruangan</h1>
+                  <canvas id="suhuChart" width="800" height="400"></canvas> -->
                 <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
                   <div class="row">
                     <div class="col-6 mb-4">
@@ -515,3 +517,33 @@
               </div>
             </div>
             <!-- / Content -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+        // Ambil data dari PHP dan format jika diperlukan
+        var labels = <?php echo json_encode($labels); ?>;
+        var data = <?php echo json_encode($data); ?>;
+
+        // Buat chart menggunakan Chart.js
+        var ctx = document.getElementById('suhuChart').getContext('2d');
+        var suhuChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Suhu Ruangan',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>

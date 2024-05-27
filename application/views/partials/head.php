@@ -337,20 +337,22 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Reports</span></li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx bxs-file-doc"></i>
-                <div data-i18n="Form Layouts">Report Data</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="<?= base_url('report');?>" class="menu-link">
-                    <div data-i18n="Vertical Form">Report Data E-RTM</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            <?php if ($this->session->userdata('type') == '0') : ?>
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Reports</span></li>
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx bxs-file-doc"></i>
+                  <div data-i18n="Form Layouts">Report Data</div>
+                </a>
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="<?= base_url('report');?>" class="menu-link">
+                      <div data-i18n="Vertical Form">Report Data E-RTM</div>
+                    </a>
+                  </li>
+                </ul>
+            <?php endif ?> 
+              </li>
         </aside>
         <!-- / Menu -->
 
