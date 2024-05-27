@@ -35,22 +35,30 @@ class Sanitasi extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $insert = $this->sanitasi_model->insert();
             if ($insert) {
-                $this->session->set_flashdata('success_msg', "Data Suhu Ruangan berhasil disimpan");
+                $this->session->set_flashdata('success_msg', "Data Sanitasi Kbersihaan ruangan berhasil disimpan");
             } else {
-                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Suhu Ruangan");
+                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Sanitasi Kbersihaan ruangan");
             }
             redirect('sanitasi');
         }
 
         $data = array(
             'sanitasi' => $this->sanitasi_model->get_all(),
-            'active_nav' => 'sanitasi', 
+            'active_nav' => 'sanitasi',
         );
+        // Get validation errors
+            // $errors = validation_errors();
+
+            // $data['errors'] = $errors;
+
+            // var_dump($errors);
+            // exit();
 
         $this->load->view('partials/head', $data);
         $this->load->view('sanitasi/sanitasi-tambah', $data);
         $this->load->view('partials/footer');
     }
+
 	public function edit($uuid)
 	{
 		$data['sanitasi'] = $this->sanitasi_model->get_by_uuid($uuid);

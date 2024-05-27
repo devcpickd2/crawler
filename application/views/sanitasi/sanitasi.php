@@ -73,9 +73,8 @@
                         <tr>
                             <th>No</th>
                             <th>Date</th>
-                            <th>Shift</th>
-                            <th>Pukul</th>
-                            <th>Chill Room</th>
+                            <th>Waktu</th>
+                            <!-- <th>Chill Room</th>
                             <th>Cold Storage 1</th>
                             <th>Cold Storage 2</th>
                             <th>Anteroom</th>
@@ -90,10 +89,14 @@
                             <th>Packing (karton)</th>
                             <th>Dry T</th>
                             <th>Dry Rh</th>
-                            <th>Cold stor. FG</th>
-                            <th>Keterangan</th>
-                            <th>Produksi</th>
+                            <th>Cold stor. FG</th> -->
+                            <th>Area</th>
+                            <th>Lokasi</th>
+                            <th>Kondisi</th>
+                            <th>Tindakan</th>
+                            <!-- <th>Keterangan</th> -->
                             <th>QC</th>
+                            <!-- <th>Produksi</th> -->
                             <!-- <th>Catatan</th> -->
                             <th>Action</th>
                         </tr>
@@ -106,9 +109,8 @@
                             <tr>
                                 <td><?= $no; ?></td>
                                 <td><?= $val->date; ?></td>
-                                <td><?= $val->shift; ?></td>
-                                <td><?= $val->pukul; ?></td>
-                                <td><?= $val->chill_room; ?></td>
+                                <td><?= $val->waktu; ?></td>
+                                <!-- <td><?= $val->chill_room; ?></td>
                                 <td><?= $val->cold_stor1; ?></td>
                                 <td><?= $val->cold_stor2; ?></td>
                                 <td><?= $val->anteroom; ?></td>
@@ -123,9 +125,13 @@
                                 <td><?= $val->packing_karton; ?></td>
                                 <td><?= $val->dry_T; ?></td>
                                 <td><?= $val->dry_RH; ?></td>
-                                <td><?= $val->cold_fg; ?></td>
-                                <td><?= $val->keterangan; ?></td>
-                                <td><?= $val->produksi; ?></td>
+                                <td><?= $val->cold_fg; ?></td> -->
+                                <td><?= $val->area; ?></td>
+                                <td><?= $val->lokasi; ?></td>
+                                <td><?= $val->kondisi; ?></td>
+                                <td><?= $val->tindakan_koreksi; ?></td>
+                                <!-- <td><?= $val->keterangan; ?></td> -->
+                                <!-- <td><?= $val->produksi; ?></td> -->
                                 <td><?= $val->nama_pegawai; ?></td>
                                 <!-- <td><?= $val->catatan; ?></td> -->
                                 <td>

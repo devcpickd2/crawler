@@ -4,225 +4,142 @@ use Ramsey\Uuid\Uuid;
 
 
 class Sanitasi_model extends CI_Model {
-	
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('login_model');
-	}
-	public function rules(){
-		return [
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('login_model');
+    }
+
+    public function rules(){
+        return [
             [
                 'field' => 'date',
                 'label' => 'Tanggal',
                 'rules' => 'required'
             ],
             [
-                'field' => 'shift',
-                'label' => 'Shift',
+                'field' => 'waktu',
+                'label' => 'waktu',
                 'rules' => 'required'
             ],
             [
-                'field' => 'pukul',
-                'label' => 'Pukul',
+                'field' => 'area',
+                'label' => 'area',
                 'rules' => 'required'
             ],
             [
-                'field' => 'chill_room',
-                'label' => 'Chill Room',
+                'field' => 'lokasi',
+                'label' => 'lokasi',
+                // 'rules' => 'required'
+            ],
+            [
+                'field' => 'kondisi[]',
+                'label' => 'kondisi',
                 'rules' => 'required'
             ],
             [
-                'field' => 'cold_stor1',
-                'label' => 'Cold Storage 1',
+                'field' => 'masalah[]',
+                'label' => 'masalah',
                 'rules' => 'required'
             ],
             [
-                'field' => 'cold_stor2',
-                'label' => 'Cold Storage 2',
+                'field' => 'tindakan_koreksi[]',
+                'label' => 'tindakan_koreksi',
                 'rules' => 'required'
             ],
-            [
-                'field' => 'anteroom',
-                'label' => 'Anteroom',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'sea_T',
-                'label' => 'Seasoning T',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'sea_RH',
-                'label' => 'Seasoning RH',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'prep_room',
-                'label' => 'Prep. Room',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'cooking_room',
-                'label' => 'Cooking Room',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'filling_room',
-                'label' => 'Filling Room',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'rice_room',
-                'label' => 'rice Room',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'noodle_room',
-                'label' => 'noodle Room',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'topping_area',
-                'label' => 'topping area',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'packing_karton',
-                'label' => '',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'dry_T',
-                'label' => '',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'dry_RH',
-                'label' => '',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'cold_fg',
-                'label' => '',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'keterangan',
-                'label' => '',
-                'rules' => ''
-            ],
-            [
-                'field' => 'produksi',
-                'label' => '',
-                'rules' => 'required'
-            ],
-            [
-                'field' => 'catatan',
-                'label' => '',
-                'rules' => ''
-            ],
+            
         ];
     }
 
     public function insert()
     {
         $uuid = Uuid::uuid4()->toString();
+        $data['uuid'] = $uuid;
+        $data['date'] = $this->input->post('date');
+        $data['waktu'] = $this->input->post('waktu');
+        $data['area'] = $this->input->post('area');
+        $data['qc'] = $this->session->userdata('user_uuid');
 
-        // ini ga berpengaruh sebenernya
-        // $date = $this->input->post('date');
-        // $shift = $this->input->post('shift');
-        // $pukul = $this->input->post('pukul');
-        // $chill_room = $this->input->post('chill_room');
-        // $cold_stor1 = $this->input->post('cold_stor1');
-        // $cold_stor2 = $this->input->post('cold_stor2');
-        // $anteroom = $this->input->post('anteroom');
-        // $sea_T = $this->input->post('sea_T');
-        // $sea_RH = $this->input->post('sea_RH');
-        // $prep_room = $this->input->post('prep_room');
-        // $cooking_room = $this->input->post('cooking_room');
-        // $filling_room = $this->input->post('filling_room');
-        // $rice_room = $this->input->post('rice_room');
-        // $noodle_room = $this->input->post('noodle_room');
-        // $topping_area = $this->input->post('topping_area');
-        // $packing_karton = $this->input->post('packing_karton');
-        // $dry_T = $this->input->post('dry_T');
-        // $dry_RH = $this->input->post('dry_RH');
-        // $cold_fg = $this->input->post('cold_fg');
-        // $keterangan = $this->input->post('keterangan');
-        // $produksi = $this->input->post('produksi');
-        // $catatan = $this->input->post('catatan');
+        // Ambil informasi lokasi yang dipilih dari form
+        $lokasiFields = $this->input->post('lokasi');
 
-        $data = array(
-            'uuid' => $uuid,
-            'date' => $this->input->post('date'),
-            'shift' => $this->input->post('shift'),
-            'pukul' => $this->input->post('pukul'),
-            'chill_room' => $this->input->post('chill_room'),
-            'cold_stor1' => $this->input->post('cold_stor1'),
-            'cold_stor2' => $this->input->post('cold_stor2'),
-            'anteroom' => $this->input->post('anteroom'),
-            'sea_T' => $this->input->post('sea_T'),
-            'sea_RH' => $this->input->post('sea_RH'),
-            'prep_room' => $this->input->post('prep_room'),
-            'cooking_room' => $this->input->post('cooking_room'),
-            'filling_room' => $this->input->post('filling_room'),
-            'rice_room' => $this->input->post('rice_room'),
-            'noodle_room' => $this->input->post('noodle_room'),
-            'topping_area' => $this->input->post('topping_area'),
-            'packing_karton' => $this->input->post('packing_karton'),
-            'dry_T' => $this->input->post('dry_T'),
-            'dry_RH' => $this->input->post('dry_RH'),
-            'cold_fg' => $this->input->post('cold_fg'),
-            'keterangan' => $this->input->post('keterangan'),
-            'produksi' => $this->input->post('produksi'),
-            'qc' => $this->session->userdata('user_uuid'),
-            'catatan' => $this->input->post('catatan')
-        );
-        $this->db->insert('kebersihan_ruangan', $data);
+        // Pastikan $lokasiFields adalah array sebelum menggunakan implode
+        if(is_array($lokasiFields)) {
+            // Ubah array lokasi menjadi string atau JSON, tergantung pada kebutuhan aplikasi Anda
+            $lokasi = implode(', ', $lokasiFields);
+            // $lokasi = json_encode($lokasiFields);
+        } else {
+            $lokasi = ''; 
+        }
+
+        $data['lokasi'] = $lokasi;
+
+        // Buat array kosong untuk kondisi, masalah, dan tindakan koreksi
+        $kondisi = [];
+        $masalah = [];
+        $tindakan_koreksi = [];
+
+        // Ambil semua nilai yang dikirimkan dalam bentuk array
+        $kondisi_input = $this->input->post('kondisi');
+        $masalah_input = $this->input->post('masalah');
+        $tindakan_koreksi_input = $this->input->post('tindakan_koreksi');
+
+        // Loop melalui semua nilai dan tambahkan ke dalam array sesuai dengan indexnya
+        foreach ($kondisi_input as $index => $value) {
+            $kondisi[$index] = $value;
+        }
+
+        foreach ($masalah_input as $index => $value) {
+            $masalah[$index] = $value;
+        }
+
+        foreach ($tindakan_koreksi_input as $index => $value) {
+            $tindakan_koreksi[$index] = $value;
+        }
+
+        // Ubah array menjadi JSON sebelum disimpan ke dalam database
+        $data['kondisi'] = json_encode($kondisi);
+        $data['masalah'] = json_encode($masalah);
+        $data['tindakan_koreksi'] = json_encode($tindakan_koreksi);
+
+        $this->db->insert('sanitasi_ruangan', $data);
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-    public function get_all(){
-        $this->db->order_by('created_at', 'DESC');
-        $query = $this->db->get('kebersihan_ruangan');
-        return $query->result();
 
-        // $this->db->select('kebersihan_ruangan.*, pegawai.nama as nama_pegawai');
-        // $this->db->join('pegawai', 'pegawai.uuid = kebersihan_ruangan.qc', 'left');
-        // $this->db->order_by('kebersihan_ruangan.created_at', 'DESC');
-        // $query = $this->db->get('kebersihan_ruangan');
-        // return $query->result();
+    public function get_all(){
+        $this->db->select('sanitasi_ruangan.*, pegawai.nama as nama_pegawai');
+        $this->db->join('pegawai', 'pegawai.uuid = sanitasi_ruangan.qc', 'left');
+        $this->db->order_by('sanitasi_ruangan.created_at', 'DESC');
+        $query = $this->db->get('sanitasi_ruangan');
+        return $query->result();
     }
 
-	public function update($uuid, $data)
+    public function update($uuid, $data)
     {
         $this->db->where('uuid', $uuid);
-        $this->db->update('kebersihan_ruangan', $data);
+        $this->db->update('sanitasi_ruangan', $data);
         return ($this->db->affected_rows() > 0) ? true : false;
     }
+
     public function get_by_uuid($uuid)
     {
         $this->db->where('uuid', $uuid);
-        $query = $this->db->get('kebersihan_ruangan');
+        $query = $this->db->get('sanitasi_ruangan');
         return $query->row();
     }
 
     public function delete($uuid)
     {
         $this->db->where('uuid', $uuid);
-        $this->db->delete('kebersihan_ruangan');
+        $this->db->delete('sanitasi_ruangan');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-	// public function get_by_date($tanggal)
-    // {
-	// 	$this->db->where('date', $tanggal);
-    //     return $this->db->get('kebersihan_ruangan')->result();
-	// } ori
-	public function get_by_date_and_shift($tanggal, $shift)
+
+    public function get_by_date_and_shift($tanggal, $shift)
     {
         $this->db->where('date', $tanggal)->where('shift', $shift)->order_by('date', 'asc');
-		return $this->db->get('kebersihan_ruangan')->result();
-
+        return $this->db->get('sanitasi_ruangan')->result();
     }
 
 }
