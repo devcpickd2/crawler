@@ -18,7 +18,6 @@ class Sanitasi extends CI_Controller {
     {
         $data = array(
             'sanitasi' => $this->sanitasi_model->get_all(),
-			// 'tanggal' => date('Y-m-d'),
             'active_nav' => 'sanitasi', 
         );
 

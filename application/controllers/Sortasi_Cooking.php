@@ -18,7 +18,6 @@ class Sortasi_Cooking extends CI_Controller {
     {
         $data = array(
             'sortasi_cooking' => $this->sortasi_cooking_model->get_all(),
-			// 'tanggal' => date('Y-m-d'),
             'active_nav' => 'sortasi_cooking', 
         );
 

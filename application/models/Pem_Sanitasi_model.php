@@ -122,10 +122,13 @@ class Pem_Sanitasi_model extends CI_Model {
         $this->db->delete('pem_sanitasi');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-	public function get_by_date($tanggal)
+	public function get_by_date_and_shift($tanggal, $shift)
     {
-        $this->db->where('date', $tanggal);
-        return $this->db->get('pem_sanitasi')->result();
+        $this->db->select('pem_sanitasi.*, pegawai.nama as nama_pegawai');
+        $this->db->join('pegawai', 'pegawai.uuid = pem_sanitasi.qc', 'left');
+        $this->db->where('pem_sanitasi.date', $tanggal)->where('pem_sanitasi.shift', $shift)->order_by('pem_sanitasi.date', 'asc');
+        $query = $this->db->get('pem_sanitasi');
+        return $query->result();
     }
 
 }

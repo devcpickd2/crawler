@@ -213,6 +213,7 @@ class Suhu_Ruangan_model extends CI_Model {
         $this->db->delete('suhu_ruangan');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
+    // Yang ini ngambil pertanggal doang ya
 	// public function get_by_date($tanggal)
     // {
 	// 	$this->db->where('date', $tanggal);
@@ -220,9 +221,11 @@ class Suhu_Ruangan_model extends CI_Model {
 	// } ori
 	public function get_by_date_and_shift($tanggal, $shift)
     {
-        $this->db->where('date', $tanggal)->where('shift', $shift)->order_by('date', 'asc');
-		return $this->db->get('suhu_ruangan')->result();
-
+        $this->db->select('suhu_ruangan.*, pegawai.nama as nama_pegawai');
+        $this->db->join('pegawai', 'pegawai.uuid = suhu_ruangan.qc', 'left');
+        $this->db->where('suhu_ruangan.date', $tanggal)->where('suhu_ruangan.shift', $shift)->order_by('suhu_ruangan.date', 'asc');
+        $query = $this->db->get('suhu_ruangan');
+        return $query->result();
     }
 
 }

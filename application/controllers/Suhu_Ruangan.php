@@ -18,7 +18,6 @@ class Suhu_Ruangan extends CI_Controller {
     {
         $data = array(
             'suhu_ruangan' => $this->suhu_ruangan_model->get_all(),
-			// 'tanggal' => date('Y-m-d'),
             'active_nav' => 'suhu_ruangan', 
         );
 
@@ -54,9 +53,7 @@ class Suhu_Ruangan extends CI_Controller {
 	public function edit($uuid)
 	{
 		$data['suhu_ruangan'] = $this->suhu_ruangan_model->get_by_uuid($uuid);
-//         var_dump($data);
-//         exit()
-// ;
+
 		$this->load->view('partials/head', $data);
 		$this->load->view('suhu_ruangan/suhu_ruangan-edit', $data);
 		$this->load->view('partials/footer');
@@ -69,11 +66,7 @@ class Suhu_Ruangan extends CI_Controller {
 		$this->form_validation->set_rules($rules);
         
 		if ($this->form_validation->run() == FALSE) {
-
-            // ini kalau error jadi nge bug wkkw
-            // bagusnya mah di tampilin (opsional)
             
-            // Get validation errors
             // $errors = validation_errors();
 
             // $data['errors'] = $errors;
@@ -135,78 +128,133 @@ class Suhu_Ruangan extends CI_Controller {
         redirect('suhu_ruangan');
     }
 	
-	public function print_pdf()
-	{
-		$tanggal = $this->input->post('tanggal');
+    public function print_pdf()
+    {
+        $tanggal = $this->input->post('tanggal');
         $shift = $this->input->post('shift');
-		require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-		// $suhu_ruangan = $this->suhu_ruangan_model->get_by_date($tanggal); // ori ini ambil by tanggal doang
-		$suhu_ruangan = $this->suhu_ruangan_model->get_by_date_and_shift($tanggal, $shift); 
+        require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-        // var_dump($suhu_ruangan);
-        // exit();
+        $suhu_ruangan = $this->suhu_ruangan_model->get_by_date_and_shift($tanggal, $shift); 
 
-		$pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
-		$pdf->setPrintHeader(false);
-		$pdf->SetCreator(PDF_CREATOR);
-		$pdf->SetAuthor('Efa Isnawati');
-		$pdf->SetTitle('Suhu Ruangan');
-		$pdf->AddPage();
-		
-		// $pdf->SetFont('helvetica', '', 10);
-		// $logo = base_url('assets\img\cpi-logo.png');
-		// $pdf->Image($logo, 15, 10, 30, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		// $pdf->SetFont('helvetica', '', 5);
-		// $pdf->Cell(0, 10, 'PT CHAROEN POKPHAND INDONESIA - FOOD DIVISION', 0, 1, 'L');;
+        $pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(false);
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Efa Isnawati');
+        $pdf->SetTitle('Suhu Ruangan');
+        $pdf->AddPage();
 
-		// $pdf->SetFont('helvetica', 'B', 12);
-		// $pdf->Cell(0, 10, 'Suhu Ruangan', 0, 1, 'C');
-		// $pdf->Ln();
-		// $pdf->SetFont('helvetica', 11); 
-		// $pdf->Cell(0, 10, 'Tanggal: ' . $tanggal, 0, 1, 'L');
-		// if (!empty($suhu_ruangan)) {
-		// 	$pdf->Cell(0, 10, 'Shift: ' . $suhu_ruangan[0]->shift, 0, 1, 'L');
-		// }
+		$pdf->SetFont('helvetica', '', 5);
+		$pdf->Cell(0, 10, 'PT CHAROEN POKPHAND INDONESIA - FOOD DIVISION', 0, 1, 'L');;
 
-		// $pdf->SetFillColor(255, 255, 255);
-        // $pdf->SetFont('helvetica', 'B');
-        // $pdf->Cell(10, 20, 'NO', 1, 0, 'C', 1);
-        // $pdf->Cell(60, 20, 'NAMA PREMIX', 1, 0, 'C', 1);
-        // $pdf->Cell(50, 20, 'KODE PRODUKSI', 1, 0, 'C', 1);
-        // $pdf->Cell(50, 20, 'SENSORI', 1, 0, 'C', 1);
-        // $pdf->Cell(60, 20, 'TINDAKAN KOREKSI', 1, 1, 'C', 1); // Changed last parameter to 1
+        $pdf->SetFont('helvetica', 'B', 16);
+        $pdf->Cell(0, 10, 'PEMERIKSAAN SUHU RUANGAN', 0, 1, 'C');
+        $pdf->SetFont('helvetica', '', 10);
 
-        // $pdf->SetFont('helvetica', '');
-        // $row = 1;
-        // foreach ($suhu_ruangan as $row_data) {
-        //     $pdf->Cell(10, 10, $row++, 1, 0, 'C');
-        //     $pdf->Cell(60, 10, $row_data->nama_premix, 1, 0, 'C');
-        //     $pdf->Cell(50, 10, $row_data->kode_produksi, 1, 0, 'C'); // Adjusted width
-        //     $pdf->Cell(50, 10, $row_data->sensori, 1, 0, 'C'); // Adjusted width
-        //     $pdf->Cell(60, 10, $row_data->tindakan_koreksi, 1, 1, 'C');
-        // }
+        $pdf->SetFont('helvetica', 10); 
+        $pdf->Cell(0, 6, 'Tanggal: ' . $tanggal, 0, 1, 'L'); 
+        if (!empty($suhu_ruangan)) {
+            $pdf->Cell(0, 6, 'Shift: ' . $suhu_ruangan[0]->shift, 0, 1, 'L');
+        }
+        $pdf->SetFont('helvetica', '', 8);
 
-        // $pdf->Cell(0, 10, 'Keterangan:', 0, 1, 'L');
-        // $pdf->Cell(0, 2, '- Sensori : Tidak ada yang mengumpal, warna dan aroma normal', 0, 1, 'L');
-        // $pdf->Cell(0, 2, '- Tindakan koreksi diisi jika sensori tidak sesuai atau terdapat kontaminasi benda asing', 0, 1, 'L');
-        // $pdf->Ln();
+        $html = '<table border="1">
+                    <thead>
+                    <tr>
+                        <th colspan="20" style="text-align:center;">Ruangan &deg;Celcius</th>
+                    </tr>
+                    <tr style="text-align:center; width:100%">
+                        <th>Pukul</th>
+                        <th>Chill Room</th>
+                        <th>Cold Storage 1</th>
+                        <th>Cold Storage 2</th>
+                        <th>Anteroom</th>
+                        <th>T(&deg;C)</th>
+                        <th>RH(%)</th>
+                        <th>Prep Room</th>
+                        <th>Cooking Room</th>
+                        <th>Filling Room</th>
+                        <th>Rice Room</th>
+                        <th>Noodle Room</th>
+                        <th>Topping Area</th>
+                        <th>Packing(karton)</th>
+                        <th>T(&deg;C)</th>
+                        <th>RH(%)</th>
+                        <th>Cold Storage FG</th>
+                        <th>Keterangan</th>
+                        <th>QC</th>
+                        <th>Produksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="text-align:center;">
+                        <td>STD (&deg;C)</td>
+                        <td>0 - 4</td>
+                        <td style="font-family: DejaVu Sans;">-20≠2</td>
+                        <td style="font-family: DejaVu Sans;">-20≠2</td>
+                        <td>8 - 10</td>
+                        <td>22 - 20</td>
+                        <td> &lt; 75 </td>
+                        <td>8 - 12</td>
+                        <td>20 - 30</td>
+                        <td>8 - 12</td>
+                        <td>20 - 30</td>
+                        <td>20 - 30</td>
+                        <td>8 - 12</td>
+                        <td>8 - 12</td>
+                        <td>20 - 30</td>
+                        <td> &lt; 75 </td>
+                        <td style="font-family: DejaVu Sans;">-19≠1</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>';
 
-        // $pdf->Cell(55, 10, 'Diperiksa oleh', 0, 0, 'R');
-        // $pdf->Cell(55, 10, 'Diketahui oleh', 0, 0, 'R');
-        // $pdf->Cell(55, 10, 'Disetujui oleh', 0, 0, 'R');
-        // $pdf->Ln();
-        // $pdf->Cell(55, 10, '.............................', 0, 0, 'R');
-        // $pdf->Cell(55, 10, '.............................', 0, 0, 'R');
-        // $pdf->Cell(55, 10, '.............................', 0, 0, 'R');
-        // $pdf->Ln();
-        // $pdf->Cell(55, 10, 'QC', 0, 0, 'R');
-        // $pdf->Cell(55, 10, 'Produksi', 0, 0, 'R');
-        // $pdf->Cell(55, 10, 'SPV QC', 0, 0, 'R');
-        // $pdf->Ln();
+        foreach ($suhu_ruangan as $data) {
+            $html .= '<tr style="text-align:center;">
+                        <td>' . $data->pukul . '</td>
+                        <td>' . $data->chill_room . '</td>
+                        <td>' . $data->cold_stor1 . '</td>
+                        <td>' . $data->cold_stor2 . '</td>
+                        <td>' . $data->anteroom . '</td>
+                        <td>' . $data->sea_T . '</td>
+                        <td>' . $data->sea_RH . '</td>
+                        <td>' . $data->prep_room . '</td>
+                        <td>' . $data->cooking_room . '</td>
+                        <td>' . $data->filling_room . '</td>
+                        <td>' . $data->rice_room . '</td>
+                        <td>' . $data->noodle_room . '</td>
+                        <td>' . $data->topping_area . '</td>
+                        <td>' . $data->packing_karton . '</td>
+                        <td>' . $data->dry_T . '</td>
+                        <td>' . $data->dry_RH . '</td>
+                        <td>' . $data->cold_fg . '</td>
+                        <td>' . $data->keterangan . '</td>
+                        <td>' . $data->nama_pegawai . '</td>
+                        <td>' . $data->produksi . '</td>
+                    </tr>';
+        }
 
-		$pdf->Output('Suhu Ruangan' . $tanggal . '.pdf', 'I');
-	}
+        $html .= '</tbody></table>';
+        $pdf->writeHTML($html, true, false, false, false, '');
+        $lebar1 = 260;
+        $lebar2 = 0; 
+
+        $pdf->Cell($lebar1 - $lebar2, 10, '', 0, 0); 
+        $pdf->Cell($lebar2, 0, 'QR 02/03', 0, 1, 'L');
+
+        $pdf->Cell(0, 6, 'Catatan: ' . $data->catatan, 0, 1, 'L');
+        $pdf->Ln(); 
+
+        $pdf->Cell(55, 10, 'Diperiksa oleh_______________', 0, 0, 'R');
+        $lebar_halaman = 210;
+        $lebar_sel = 55; 
+
+        $pdf->Cell($lebar_halaman - $lebar_sel, 10, '', 0, 0); 
+        $pdf->Cell($lebar_sel, 10, 'Disetujui oleh_______________', 0, 1, 'L');
+
+        $pdf->Output('Suhu_Ruangan.pdf', 'I');
+    }
 
 }
 ?>

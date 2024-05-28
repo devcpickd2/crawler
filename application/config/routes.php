@@ -96,6 +96,9 @@ $route['sanitasi'] = 'sanitasi';
 $route['sanitasi/tambah'] = 'sanitasi/tambah';
 $route['sanitasi/edit/(:any)'] = 'sanitasi/edit/$1';
 
+$route['my_profile'] = 'profile/my_profile';
+$route['setting'] = 'profile/setting';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['logout'] = 'login/logout';

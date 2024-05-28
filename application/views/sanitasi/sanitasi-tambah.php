@@ -165,7 +165,6 @@
     var hours = String(now.getHours()).padStart(2, '0');
     var minutes = String(now.getMinutes()).padStart(2, '0');
 
-    // Atur nilai input tanggal dan waktu ke tanggal dan waktu saat ini
     inputDate.value = year + '-' + month + '-' + day;
     inputTime.value = hours + ':' + minutes;
 </script>

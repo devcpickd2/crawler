@@ -56,3 +56,17 @@
     </div>
     <!-- / Content -->
 </div>
+<script>
+    var inputDate = document.getElementById('date');
+    var inputTime = document.getElementById('pukul');
+
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = String(now.getMonth() + 1).padStart(2, '0');
+    var day = String(now.getDate()).padStart(2, '0');
+    var hours = String(now.getHours()).padStart(2, '0');
+    var minutes = String(now.getMinutes()).padStart(2, '0');
+
+    inputDate.value = year + '-' + month + '-' + day;
+    inputTime.value = hours + ':' + minutes;
+</script>
