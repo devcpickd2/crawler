@@ -34,9 +34,9 @@ class Pem_Sanitasi extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $insert = $this->pem_sanitasi_model->insert();
             if ($insert) {
-                $this->session->set_flashdata('success_msg', "Data Verifikasi Premix berhasil disimpan");
+                $this->session->set_flashdata('success_msg', "Data Pemeriksaan Sanitasi berhasil disimpan");
             } else {
-                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Verifikasi Premix");
+                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Pemeriksaan Sanitasi");
             }
             redirect('pem_sanitasi');
         }
@@ -115,101 +115,59 @@ class Pem_Sanitasi extends CI_Controller {
 
         require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-        $suhu_ruangan = $this->pem_sanitasi_model->get_by_date_and_shift($tanggal, $shift); 
+        $pem_sanitasi = $this->pem_sanitasi_model->get_by_date_and_shift($tanggal, $shift); 
 
-        $pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
+        $pdf = new TCPDF('P', PDF_UNIT, 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Efa Isnawati');
-        $pdf->SetTitle('Suhu Ruangan');
+        $pdf->SetTitle('Pemeriksaan Sanitasi');
         $pdf->AddPage();
 
 		$pdf->SetFont('helvetica', '', 5);
 		$pdf->Cell(0, 10, 'PT CHAROEN POKPHAND INDONESIA - FOOD DIVISION', 0, 1, 'L');;
 
         $pdf->SetFont('helvetica', 'B', 16);
-        $pdf->Cell(0, 10, 'PEMERIKSAAN SUHU RUANGAN', 0, 1, 'C');
+        $pdf->Cell(0, 10, 'PEMERIKSAAN SANITASI', 0, 1, 'C');
         $pdf->SetFont('helvetica', '', 10);
 
         $pdf->SetFont('helvetica', 10); 
         $pdf->Cell(0, 6, 'Tanggal: ' . $tanggal, 0, 1, 'L'); 
-        if (!empty($suhu_ruangan)) {
-            $pdf->Cell(0, 6, 'Shift: ' . $suhu_ruangan[0]->shift, 0, 1, 'L');
+        if (!empty($pem_sanitasi)) {
+            $pdf->Cell(0, 6, 'Shift: ' . $pem_sanitasi[0]->shift, 0, 1, 'L');
         }
-        $pdf->SetFont('helvetica', '', 8);
+        $pdf->SetFont('helvetica', '', 9);
 
         $html = '<table border="1">
                     <thead>
-                    <tr>
-                        <th colspan="20" style="text-align:center;">Ruangan &deg;Celcius</th>
-                    </tr>
                     <tr style="text-align:center; width:100%">
                         <th>Pukul</th>
-                        <th>Chill Room</th>
-                        <th>Cold Storage 1</th>
-                        <th>Cold Storage 2</th>
-                        <th>Anteroom</th>
-                        <th>T(&deg;C)</th>
-                        <th>RH(%)</th>
-                        <th>Prep Room</th>
-                        <th>Cooking Room</th>
-                        <th>Filling Room</th>
-                        <th>Rice Room</th>
-                        <th>Noodle Room</th>
-                        <th>Topping Area</th>
-                        <th>Packing(karton)</th>
-                        <th>T(&deg;C)</th>
-                        <th>RH(%)</th>
-                        <th>Cold Storage FG</th>
+                        <th>Foot Basin</th>
+                        <th>Hand Basin</th>
                         <th>Keterangan</th>
+                        <th>Tindakan Koreksi</th>
                         <th>QC</th>
                         <th>Produksi</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr style="text-align:center;">
-                        <td>STD (&deg;C)</td>
-                        <td>0 - 4</td>
-                        <td style="font-family: DejaVu Sans;">-20≠2</td>
-                        <td style="font-family: DejaVu Sans;">-20≠2</td>
-                        <td>8 - 10</td>
-                        <td>22 - 20</td>
-                        <td> &lt; 75 </td>
-                        <td>8 - 12</td>
-                        <td>20 - 30</td>
-                        <td>8 - 12</td>
-                        <td>20 - 30</td>
-                        <td>20 - 30</td>
-                        <td>8 - 12</td>
-                        <td>8 - 12</td>
-                        <td>20 - 30</td>
-                        <td> &lt; 75 </td>
-                        <td style="font-family: DejaVu Sans;">-19≠1</td>
+                        <td>Standar</td>
+                        <td>200 ppm</td>
+                        <td>500 ppm</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>';
 
-        foreach ($suhu_ruangan as $data) {
+        foreach ($pem_sanitasi as $data) {
             $html .= '<tr style="text-align:center;">
                         <td>' . $data->pukul . '</td>
-                        <td>' . $data->chill_room . '</td>
-                        <td>' . $data->cold_stor1 . '</td>
-                        <td>' . $data->cold_stor2 . '</td>
-                        <td>' . $data->anteroom . '</td>
-                        <td>' . $data->sea_T . '</td>
-                        <td>' . $data->sea_RH . '</td>
-                        <td>' . $data->prep_room . '</td>
-                        <td>' . $data->cooking_room . '</td>
-                        <td>' . $data->filling_room . '</td>
-                        <td>' . $data->rice_room . '</td>
-                        <td>' . $data->noodle_room . '</td>
-                        <td>' . $data->topping_area . '</td>
-                        <td>' . $data->packing_karton . '</td>
-                        <td>' . $data->dry_T . '</td>
-                        <td>' . $data->dry_RH . '</td>
-                        <td>' . $data->cold_fg . '</td>
+                        <td>' . $data->foot_basin . '</td>
+                        <td>' . $data->hand_basin . '</td>
                         <td>' . $data->keterangan . '</td>
+                        <td>' . $data->tindakan_koreksi . '</td>
                         <td>' . $data->nama_pegawai . '</td>
                         <td>' . $data->produksi . '</td>
                     </tr>';
@@ -217,23 +175,19 @@ class Pem_Sanitasi extends CI_Controller {
 
         $html .= '</tbody></table>';
         $pdf->writeHTML($html, true, false, false, false, '');
-        $lebar1 = 260;
+        $lebar1 = 175;
         $lebar2 = 0; 
 
         $pdf->Cell($lebar1 - $lebar2, 10, '', 0, 0); 
-        $pdf->Cell($lebar2, 0, 'QR 02/03', 0, 1, 'L');
+        $pdf->Cell($lebar2, 0, 'QR 03/01', 0, 1, 'L');
 
         $pdf->Cell(0, 6, 'Catatan: ' . $data->catatan, 0, 1, 'L');
         $pdf->Ln(); 
 
         $pdf->Cell(55, 10, 'Diperiksa oleh_______________', 0, 0, 'R');
-        $lebar_halaman = 210;
-        $lebar_sel = 55; 
+        $pdf->Cell(130, 10, 'Disetujui oleh_______________', 0, 0, 'R');
 
-        $pdf->Cell($lebar_halaman - $lebar_sel, 10, '', 0, 0); 
-        $pdf->Cell($lebar_sel, 10, 'Disetujui oleh_______________', 0, 1, 'L');
-
-        $pdf->Output('Suhu_Ruangan.pdf', 'I');
+        $pdf->Output('Pemeriksaan Sanitasi.pdf', 'I');
     }
 
 }

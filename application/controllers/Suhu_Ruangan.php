@@ -136,6 +136,15 @@ class Suhu_Ruangan extends CI_Controller {
         require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
         $suhu_ruangan = $this->suhu_ruangan_model->get_by_date_and_shift($tanggal, $shift); 
+        
+        if (empty($suhu_ruangan)) {
+            echo '<script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#noDataModal").modal("show");
+                    });
+                  </script>';
+            return;
+        }
 
         $pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(false);
