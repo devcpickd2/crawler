@@ -98,6 +98,7 @@ $route['sanitasi/edit/(:any)'] = 'sanitasi/edit/$1';
 
 $route['my_profile'] = 'profile/my_profile';
 $route['setting'] = 'profile/setting';
+$route['setting/submit'] = 'profile/submit_edit';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

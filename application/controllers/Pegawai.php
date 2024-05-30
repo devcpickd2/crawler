@@ -72,32 +72,34 @@ class Pegawai extends CI_Controller {
 
 	public function update()
 	{
-		$rules = $this->pegawai_model->rules();
+		$rules = $this->pegawai_model->update_rules();
 		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == FALSE) {
-			// Validasi form gagal, kembali ke halaman edit dengan menampilkan pesan kesalahan
 			$uuid = $this->input->post('uuid');
 			$data['pegawai'] = $this->pegawai_model->get_by_uuid($uuid);
 
-			$this->load->view('partials/head');
-			$this->load->view('pegawai/pegawai-edit', $data);
-			$this->load->view('partials/footer');
+			$errors = validation_errors();
+
+			$this->session->set_flashdata('error_msg', 'Gagal mengupdate data pegawai');
+			redirect('pegawai/edit/' . $uuid);
 		} else {
-			// Validasi form berhasil, lanjutkan dengan pembaruan data
 			$uuid = $this->input->post('uuid');
+			$password = $this->input->post('password');
+
 			$data = array(
 				'nama' => $this->input->post('nama'),
 				'email' => $this->input->post('email'),
 				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password'),
 				'departemen' => $this->input->post('departemen'),
 				'tipe_user' => $this->input->post('tipe_user')
 			);
 
+			if (!empty($password)) {
+				$data['password'] = password_hash($password, PASSWORD_BCRYPT);
+			}
+
 			$update = $this->pegawai_model->update($uuid, $data);
-			var_dump($update);
-			exit();
 
 			if ($update) {
 				$this->session->set_flashdata('success_msg', 'Data pegawai berhasil diupdate');
@@ -108,4 +110,5 @@ class Pegawai extends CI_Controller {
 			}
 		}
 	}
+
 }

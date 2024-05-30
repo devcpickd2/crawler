@@ -141,5 +141,17 @@ class Sanitasi_model extends CI_Model {
         $this->db->where('date', $tanggal)->where('shift', $shift)->order_by('date', 'asc');
         return $this->db->get('sanitasi_ruangan')->result();
     }
-
+	public function get_by_date($tanggal)
+    {
+        $this->db->where('date', $tanggal);
+        $this->db->select('sanitasi_ruangan.*, pegawai.nama as nama_pegawai');
+        $this->db->join('pegawai', 'pegawai.uuid = sanitasi_ruangan.qc', 'left');
+        $query = $this->db->get('sanitasi_ruangan');
+        
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
 }

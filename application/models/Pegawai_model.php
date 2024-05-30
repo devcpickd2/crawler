@@ -50,6 +50,44 @@ class Pegawai_model extends CI_Model {
 		];
 	}
 
+	public function update_rules()
+	{
+		return[
+			[
+				'field' => 'nama',
+				'label' => 'Name',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'email',
+				'label' => 'Email',
+				// 'rules' => 'valid_email',
+				// 'errors' => array('valid_email' => 'Masukkan alamat email yang valid.')
+			],
+			[
+				'field' => 'departemen',
+				'label' => 'Department',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'username',
+				'label' => 'Username',
+				'rules' => 'required'
+			],
+			[
+				'field' => 'password',
+				'label' => 'Password',
+				'rules' => 'required'
+				// 'rules' => 'required|min_length[8]'
+			],
+			[
+				'field' => 'tipe_user',
+				'label' => 'User Type',
+				'rules' => 'required'
+			]
+		];
+	}
+
 
 	public function insert()
 	{

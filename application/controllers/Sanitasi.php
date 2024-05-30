@@ -34,9 +34,9 @@ class Sanitasi extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $insert = $this->sanitasi_model->insert();
             if ($insert) {
-                $this->session->set_flashdata('success_msg', "Data Sanitasi Kbersihaan ruangan berhasil disimpan");
+                $this->session->set_flashdata('success_msg', "Data Sanitasi Kebersihan ruangan berhasil disimpan");
             } else {
-                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Sanitasi Kbersihaan ruangan");
+                $this->session->set_flashdata('error_msg', "Gagal menyimpan data Sanitasi Kebersihan ruangan");
             }
             redirect('sanitasi');
         }
@@ -142,78 +142,133 @@ class Sanitasi extends CI_Controller {
         redirect('sanitasi');
     }
 	
-	public function print_pdf()
-	{
-		$tanggal = $this->input->post('tanggal');
+    public function print_pdf()
+    {
+        $tanggal = $this->input->post('tanggal');
         $shift = $this->input->post('shift');
-		require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
+        require_once APPPATH . 'third_party/tcpdf/tcpdf.php';
 
-		// $sanitasi = $this->sanitasi_model->get_by_date($tanggal); // ori
-		$sanitasi = $this->sanitasi_model->get_by_date_and_shift($tanggal, $shift); 
+        $sanitasi = $this->sanitasi_model->get_by_date($tanggal);
 
-        var_dump($sanitasi);
-        exit();
+        $pdf = new TCPDF('P', PDF_UNIT, 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(false);
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Efa Isnawati');
+        $pdf->SetTitle('Sanitasi Kebersihaan Ruangan');
+        $pdf->AddPage();
 
-		$pdf = new TCPDF('L', PDF_UNIT, 'A4', true, 'UTF-8', false);
-		$pdf->setPrintHeader(false);
-		$pdf->SetCreator(PDF_CREATOR);
-		$pdf->SetAuthor('Efa Isnawati');
-		$pdf->SetTitle('Suhu Ruangan');
-		$pdf->AddPage();
-		
-		$pdf->SetFont('helvetica', '', 10);
-		// $logo = base_url('assets\img\cpi-logo.png');
-		// $pdf->Image($logo, 15, 10, 30, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		$pdf->SetFont('helvetica', '', 5);
-		$pdf->Cell(0, 10, 'PT CHAROEN POKPHAND INDONESIA - FOOD DIVISION', 0, 1, 'L');;
+        $pdf->SetFont('helvetica', '', 5);
+        $pdf->Cell(0, 10, 'PT CHAROEN POKPHAND INDONESIA - FOOD DIVISION', 0, 1, 'L');
+        $pdf->SetFont('helvetica', 'B', 16);
+        $pdf->Cell(0, 10, 'KEBERSIHAAN RUANGAN', 0, 1, 'C');
+        $pdf->SetFont('helvetica', '', 10);
+        $pdf->Cell(0, 6, 'Tanggal: ' . $tanggal, 0, 1, 'L');
 
-		$pdf->SetFont('helvetica', 'B', 12);
-		$pdf->Cell(0, 10, 'Suhu Ruangan', 0, 1, 'C');
-		$pdf->Ln();
-		$pdf->SetFont('helvetica', 11); 
-		$pdf->Cell(0, 10, 'Tanggal: ' . $tanggal, 0, 1, 'L');
-		if (!empty($sanitasi)) {
-			$pdf->Cell(0, 10, 'Shift: ' . $sanitasi[0]->shift, 0, 1, 'L');
-		}
+        $html = "
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin-top: 20px;
+                }
+                th, td {
+                    border: 1px solid #000;
+                    padding: 8px;
+                    text-align: center;
+                }
+                th {
+                    background-color: #f2f2f2;
+                    font-weight: bold;
+                }
+                td {
+                    font-size: 10px;
+                }
+            </style>
+            <table>
+                <tr>
+                    <th rowspan='2'>NO</th>
+                    <th rowspan='2'>Waktu Periksa</th>
+                    <th rowspan='2'>Area</th>
+                    <th colspan='2'>Kondisi</th>
+                    <th rowspan='2'>Masalah</th>
+                    <th rowspan='2'>Tindakan Koreksi</th>
+                    <th rowspan='2'>Paraf</th>
+                </tr>
+        ";
 
-		$pdf->SetFillColor(255, 255, 255);
-        $pdf->SetFont('helvetica', 'B');
-        $pdf->Cell(10, 20, 'NO', 1, 0, 'C', 1);
-        $pdf->Cell(60, 20, 'NAMA PREMIX', 1, 0, 'C', 1);
-        $pdf->Cell(50, 20, 'KODE PRODUKSI', 1, 0, 'C', 1);
-        $pdf->Cell(50, 20, 'SENSORI', 1, 0, 'C', 1);
-        $pdf->Cell(60, 20, 'TINDAKAN KOREKSI', 1, 1, 'C', 1); // Changed last parameter to 1
+        $row_number = 1; // Inisialisasi nomor urut di luar loop
+        foreach ($sanitasi as $data) {
+            $html .= "
+                <tr>
+                    <td>{$row_number}</td>
+                    <td>{$data->waktu}</td>
+                    <td><b>{$data->area}</b></td>
+                    <td colspan='2'></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            ";
 
-        $pdf->SetFont('helvetica', '');
-        $row = 1;
-        foreach ($sanitasi as $row_data) {
-            $pdf->Cell(10, 10, $row++, 1, 0, 'C');
-            $pdf->Cell(60, 10, $row_data->nama_premix, 1, 0, 'C');
-            $pdf->Cell(50, 10, $row_data->kode_produksi, 1, 0, 'C'); // Adjusted width
-            $pdf->Cell(50, 10, $row_data->sensori, 1, 0, 'C'); // Adjusted width
-            $pdf->Cell(60, 10, $row_data->tindakan_koreksi, 1, 1, 'C');
+            $kondisi = $data->kondisi;
+            $masalah = $data->masalah;
+            $tindakan_koreksi = $data->tindakan_koreksi;
+
+            $array_data_kondisi = json_decode($kondisi, true);
+            $array_data_masalah = json_decode($masalah, true);
+            $array_data_tindakan_koreksi = json_decode($tindakan_koreksi, true);
+
+            foreach ($array_data_kondisi as $kondisi => $status) {
+                $html .= "
+                    <tr>
+                        <td></td>
+                        <td>{$data->date}</td>
+                        <td>{$kondisi}</td>
+                        <td colspan='2'>";
+                if ($status == "0") {
+                    $html .= "Oke";
+                } else {
+                    $html .= "Tidak";
+                }
+                $html .= "</td>
+                        <td>{$array_data_masalah[$kondisi]}</td>
+                        <td>{$array_data_tindakan_koreksi[$kondisi]}</td>
+                        <td>{$data->nama_pegawai}</td>
+                    </tr>
+                ";
+            }
+
+            $row_number++;
         }
 
-        $pdf->Cell(0, 10, 'Keterangan:', 0, 1, 'L');
-        $pdf->Cell(0, 2, '- Sensori : Tidak ada yang mengumpal, warna dan aroma normal', 0, 1, 'L');
-        $pdf->Cell(0, 2, '- Tindakan koreksi diisi jika sensori tidak sesuai atau terdapat kontaminasi benda asing', 0, 1, 'L');
-        $pdf->Ln();
+        $html .= "</table>";
+        $pdf->writeHTML($html, true, false, false, false, '');
 
-        $pdf->Cell(55, 10, 'Diperiksa oleh', 0, 0, 'R');
-        $pdf->Cell(55, 10, 'Diketahui oleh', 0, 0, 'R');
-        $pdf->Cell(55, 10, 'Disetujui oleh', 0, 0, 'R');
-        $pdf->Ln();
-        $pdf->Cell(55, 10, '.............................', 0, 0, 'R');
-        $pdf->Cell(55, 10, '.............................', 0, 0, 'R');
-        $pdf->Cell(55, 10, '.............................', 0, 0, 'R');
-        $pdf->Ln();
-        $pdf->Cell(55, 10, 'QC', 0, 0, 'R');
-        $pdf->Cell(55, 10, 'Produksi', 0, 0, 'R');
-        $pdf->Cell(55, 10, 'SPV QC', 0, 0, 'R');
-        $pdf->Ln();
+        $lebar1 = 175;
+        $lebar2 = 0; 
 
-		$pdf->Output('Suhu Ruangan' . $tanggal . '.pdf', 'I');
-	}
+        $pdf->Cell($lebar1 - $lebar2, 10, '', 0, 0); 
+        $pdf->Cell($lebar2, 0, 'QR 01/02', 0, 1, 'L');
+
+        $pdf->SetFont('helvetica', '', 5);
+        $pdf->Cell(0, 3, 'Ket :', 0, 1, 'L');
+        $pdf->Cell(0, 3, '1 : Berdebu', 0, 1, 'L');
+        $pdf->Cell(0, 3, '2 : Basah', 0, 1, 'L');
+        $pdf->Cell(0, 3, '3 : Pecah/Retak', 0, 1, 'L');
+        $pdf->Cell(0, 3, '4 : Sisa Produk seperti lemak, daging, potongan plastik', 0, 1, 'L');
+        $pdf->Cell(0, 3, '5 : Noda seperti tinta, karat, kerak', 0, 1, 'L');
+        $pdf->Cell(0, 3, '6 : Pertumbuhan mikrooranisme, seperti jamur dan bau busuk', 0, 1, 'L');
+
+        $pdf->Cell(0, 6, 'Catatan :');
+        $pdf->Ln(); 
+        $pdf->SetFont('helvetica', '', 10);
+
+        $pdf->Cell(55, 10, 'Diperiksa oleh_______________', 0, 0, 'R');
+        $pdf->Cell(130, 10, 'Disetujui oleh_______________', 0, 0, 'R');
+
+        $pdf->Output('Sanitasi Kebersihaan Ruangan' . $tanggal . '.pdf', 'I');
+    }
+
 
 }
 ?>

@@ -12,19 +12,12 @@
                     <div class="form-group d-flex align-items-center">
                         <label for="tanggal" class="mr-2">Tanggal:</label>
                         <input type="date" class="form-control mr-2" id="tanggal" name="tanggal">
-                        <select name="shift" class="form-control" required>
-                            <option value="">Pilih Shift</option>
-                            <option value="1">Shift 1</option>
-                            <option value="2">Shift 2</option>
-                            <option value="3">Shift 3</option>
-                        </select>
                         <button type="submit" class="btn btn-info btn-sm"><i class="bx bx-printer"></i>Print PDF</button>
                     </div>
                 </form>
             </div>
         </div>
         <hr class="my-5" />
-        <!-- Responsive Table -->
         <div class="card">
             <?php if($this->session->flashdata('success_msg')): ?>
                 <div id="successModal" class="modal fade" role="dialog">
@@ -98,7 +91,7 @@
                             <th>QC</th>
                             <!-- <th>Produksi</th> -->
                             <!-- <th>Catatan</th> -->
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -138,9 +131,9 @@
                                     <!-- <a href="<?= base_url('sanitasi/edit/' . $val->uuid); ?>" class="btn btn-warning">
                                         <i class="bx bx-edit"></i> Edit
                                     </a> -->
-                                    <a href="<?= base_url('sanitasi/print_pdf/' . $val->uuid); ?>" class="btn btn-info" target="_blank">
+                                    <!-- <a href="<?= base_url('sanitasi/print_pdf/' . $val->uuid); ?>" class="btn btn-info" target="_blank">
                                         <i class="bx bx-printer"></i> Print
-                                    </a>
+                                    </a> -->
                                 </td>
                             </tr>
                         <?php

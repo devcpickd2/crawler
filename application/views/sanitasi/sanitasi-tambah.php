@@ -96,7 +96,7 @@
         });
     });
 </script> -->
-<script>
+<script> 
     const areas = {
         "CHILLROOM RM": ["Lantai", "Dinding", "Kurtain", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
         "COLD STORAGE 1 RM": ["Lantai", "Dinding", "Kurtain", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
@@ -109,7 +109,7 @@
         "NOODLE MAKING ROOM":["Lantai", "Dinding", "Pintu","Langit-langit", "SaluranAirBuangan", "LampudanCover", "Vacuum Mixer", "Aging Machine","Roller Machine", "Cutting & Sitting"],
         "TOPPING AREA":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "SaluranAirBuangan", "LampudanCover"],
         "PACKING":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "SaluranAirBuangan", "LampudanCover", "PackingMachine", "TraySealer","MetalDetector&Rejector", "Xraydetector&Rejector", "LineConveyor", "InkjetPrinterPlastik"],
-        "IQF":["DindingLuar ", "DindingDalam", "RuangdalamIqf","ConveyorIQF"],
+        "IQF":["DindingLuar", "DindingDalam", "RuangdalamIqf","ConveyorIQF"],
         "COLD STORAGE FG":["Lantai", "Dinding", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "LampudanCover"],
         "DRY STORE":["Lantai", "Dinding", "Kurtan", "Pintu","Langit-langit", "AC", "RakPenampungProduk", "TerdapatTagging", "LampudanCover"],
     };
@@ -137,7 +137,10 @@
                     </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input type ="text" class="form-control" id="${field}" name="${kondisiName}"placeholder="Masukkan kondisi ${field}">
+                        <select class="form-control" id="${field}" name="${kondisiName}">
+                            <option value="0">Oke</option>
+                            <option value="1">Tidak</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">

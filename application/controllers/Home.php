@@ -15,14 +15,11 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		// $pegawai = $this->login_model->current_user();
 
-        // $data = array(
-        //     'nama_pegawai' => ($pegawai) ? $pegawai->nama : "Guest",
-		// 	'username'=> ($pegawai) ? $pegawai->username : "username",
-        // );
+		$data['suhu_ruangan'] = $this->suhu_ruangan_model->get_all();
+
 		$this->load->view('partials/head');
-		$this->load->view('home/home');
+		$this->load->view('home/home', $data);
 		$this->load->view('partials/footer');
 	}
 }
