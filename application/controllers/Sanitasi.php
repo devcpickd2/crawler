@@ -222,7 +222,7 @@ class Sanitasi extends CI_Controller {
                 $html .= "
                     <tr>
                         <td></td>
-                        <td>{$data->date}</td>
+                        <td>{$data->waktu}</td>
                         <td>{$kondisi}</td>
                         <td colspan='2'>";
                 if ($status == "0") {
