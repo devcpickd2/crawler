@@ -53,6 +53,16 @@ $route['default_controller'] = 'login/login';
 
 $route['login'] = 'login/auth';
 $route['home'] = 'home';
+$route['charts'] = 'charts';
+$route['comparison_charts'] = 'comparison_charts';
+$route['gemini_chat'] = 'home/gemini_chat';
+$route['negative_mentions'] = 'negative_mentions';
+$route['positive_mentions'] = 'positive_mentions';
+$route['reports'] = 'reports';
+$route['reports/excel'] = 'reports/download_csv';
+$route['reports/excel_cpi'] = 'reports/download_csv_cpi';
+$route['core/fetch_youtube_data'] = 'core/fetch_youtube_data';
+
 
 $route['departemen'] = 'departemen';
 $route['departemen/tambah'] = 'departemen/tambah';
@@ -64,38 +74,6 @@ $route['pegawai/edit/(:any)'] = 'pegawai/edit/$1';
 $route['pegawai/edituser/(:any)'] = 'pegawai/edituser/$1';
 $route['pegawai/editpass/(:any)'] = 'pegawai/editpass/$1';
 
-$route['termo'] = 'termo';
-$route['termo/tambah'] = 'termo/tambah';
-$route['termo/edit/(:any)'] = 'termo/edit/$1';
-
-$route['timbangan'] = 'timbangan';
-$route['timbangan/tambah'] = 'timbangan/tambah';
-$route['timbangan/edit/(:any)'] = 'timbangan/edit/$1';
-
-$route['verif_premix'] = 'verif_premix';
-$route['verif_premix/tambah'] = 'verif_premix/tambah';
-$route['verif_premix/edit/(:any)'] = 'verif_premix/edit/$1';
-
-$route['verif_intitusi'] = 'verif_intitusi';
-$route['verif_intitusi/tambah'] = 'verif_intitusi/tambah';
-$route['verif_intitusi/edit/(:any)'] = 'verif_intitusi/edit/$1';
-
-$route['pem_masak_steamer'] = 'pem_masak_steamer';
-$route['pem_masak_steamer/tambah'] = 'pem_masak_steamer/tambah';
-$route['pem_masak_steamer/edit/(:any)'] = 'pem_masak_steamer/edit/$1';
-
-$route['suhu_ruangan'] = 'suhu_ruangan';
-$route['suhu_ruangan/tambah'] = 'suhu_ruangan/tambah';
-$route['suhu_ruangan/edit/(:any)'] = 'suhu_ruangan/edit/$1';
-
-$route['pem_sanitasi'] = 'pem_sanitasi';
-$route['pem_sanitasi/tambah'] = 'pem_sanitasi/tambah';
-$route['pem_sanitasi/edit/(:any)'] = 'pem_sanitasi/edit/$1';
-
-$route['sanitasi'] = 'sanitasi';
-$route['sanitasi/tambah'] = 'sanitasi/tambah';
-$route['sanitasi/edit/(:any)'] = 'sanitasi/edit/$1';
-
 $route['my_profile'] = 'profile/my_profile';
 $route['setting'] = 'profile/setting';
 $route['setting/submit'] = 'profile/submit_edit';
@@ -103,3 +81,5 @@ $route['setting/submit'] = 'profile/submit_edit';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['logout'] = 'login/logout';
+
+

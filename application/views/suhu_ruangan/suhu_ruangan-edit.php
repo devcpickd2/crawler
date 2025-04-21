@@ -88,6 +88,10 @@
                                 <label for="cold_fg" class="form-label">Cold Stor FG</label>
                                 <input type="text" class="form-control" id="cold_fg" name="cold_fg" value="<?= $suhu_ruangan->cold_fg ?>">
                             </div>
+                            <div class="mb-3">
+                                <label for="anteroom_fg" class="form-label">Anteroom FG</label>
+                                <input type="text" class="form-control" id="anteroom_fg" name="anteroom_fg" value="<?= $suhu_ruangan->anteroom_fg ?>">
+                            </div>
                              <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $suhu_ruangan->keterangan ?>">

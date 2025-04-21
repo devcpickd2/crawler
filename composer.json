@@ -13,7 +13,9 @@
 	"require": {
 		"php": ">=5.3.7",
 		"ramsey/uuid": "^4.7",
-		"tecnickcom/tcpdf": "^6.7"
+		"tecnickcom/tcpdf": "^6.7",
+		"phpoffice/phpexcel": "*",
+		"phpoffice/phpspreadsheet": "1.22"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

@@ -91,6 +91,7 @@
                             <th>Dry T</th>
                             <th>Dry Rh</th>
                             <th>Cold stor. FG</th>
+                            <th>Anteroom. FG</th>
                             <th>Keterangan</th>
                             <th>Produksi</th>
                             <th>QC</th>
@@ -124,6 +125,7 @@
                                 <td><?= $val->dry_T; ?></td>
                                 <td><?= $val->dry_RH; ?></td>
                                 <td><?= $val->cold_fg; ?></td>
+                                <td><?= $val->anteroom_fg; ?></td>
                                 <td><?= $val->keterangan; ?></td>
                                 <td><?= $val->produksi; ?></td>
                                 <td><?= $val->nama_pegawai; ?></td>

@@ -98,6 +98,10 @@
                                 <input type="text" class="form-control" id="cold_fg" name="cold_fg" placeholder="Masukkan suhu cold stor FG" required>
                             </div>
                             <div class="mb-3">
+                                <label for="anteroom_fg" class="form-label">Anteroom FG</label>
+                                <input type="text" class="form-control" id="anteroom_fg" name="anteroom_fg" placeholder="Masukkan suhu Anteroom FG" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan keterangan">
                             </div>
