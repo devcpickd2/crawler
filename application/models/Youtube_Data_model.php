@@ -519,114 +519,159 @@ class Youtube_Data_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    // public function get_all_negative_mentions()
+    // {
+    //     // List of negative phrases
+    //     $negative_phrases = [
+    //         'tidak enak',
+    //         'kurang enak',
+    //         'gk enak',
+    //         'gak enak',
+    //         'ndak enak',
+    //         'ga enak',
+    //         'nggak enak',
+    //         'tidak lezat',
+    //         'gk lezat',
+    //         'gak lezat',
+    //         'kurang lezat',
+    //         'ndak lezat',
+    //         'ga lezat',
+    //         'nggak lezat',
+    //         'tidak menarik',
+    //         'gk menarik',
+    //         'gak menarik',
+    //         'kurang menarik',
+    //         'ndak menarik',
+    //         'ga menarik',
+    //         'nggak menarik',
+    //         'tidak kenyal',
+    //         'kurang kenyal',
+    //         'gk kenyal',
+    //         'gak kenyal',
+    //         'ndak kenyal',
+    //         'ga kenyal',
+    //         'nggak kenyal',
+    //         'keras',
+    //         'tidak hemat',
+    //         'gak hemat',
+    //         'gk hemat',
+    //         'ndak hemat',
+    //         'ga hemat',
+    //         'kurang hemat',
+    //         'nggak hemat',
+    //         'tidak terjangkau',
+    //         'gk terjangkau',
+    //         'gak terjangkau',
+    //         'ndak terjangkau',
+    //         'ga terjangkau',
+    //         'kurang terjangkau',
+    //         'nggak terjangkau',
+    //         'tidak praktis',
+    //         'kurang praktis',
+    //         'gak praktis',
+    //         'gk praktis',
+    //         'tidak sepraktis',
+    //         'ndak praktis',
+    //         'ga praktis',
+    //         'nggak praktis',
+    //         'gak puas',
+    //         'tidak puas',
+    //         'kurang puas',
+    //         'ndak puas',
+    //         'ga puas',
+    //         'nggak puas',
+    //         'tidak mantap',
+    //         'kurang mantap',
+    //         'gak mantap',
+    //         'nggak mantap',
+    //         'gk mantap',
+    //         'tdk mantap',
+    //         'krg mantap',
+    //         'ndak mantap',
+    //         'nggak mantap',
+    //         'ga mantap',
+    //         'berjamur',
+    //         'jamur',
+    //         'jamuran',
+    //         'lepas vacuum',
+    //         'lepas vacum',
+    //         'lepas vakum',
+    //         'lendir',
+    //         'berlendir',
+    //         'apek',
+    //         'bau',
+    //         'basi',
+    //         'asam',
+    //         'asem',
+    //         'gosong',
+    //         'caking',
+    //         'gumpal',
+    //         'menggumpal',
+    //         'benyek',
+    //         'lembek',
+    //         'tekstur busuk'
+
+    //     ];
+
+    //     // Get all negative mentions
+    //     $this->db->select('*');
+    //     $this->db->from('youtube_data');
+
+    //     // Add condition to include only comments with negative phrases
+    //     $this->db->group_start();
+    //     foreach ($negative_phrases as $phrase) {
+    //         $this->db->or_like('text', $phrase);
+    //     }
+    //     $this->db->group_end();
+
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
+
     public function get_all_negative_mentions()
-    {
-        // List of negative phrases
-        $negative_phrases = [
-            'tidak enak',
-            'kurang enak',
-            'gk enak',
-            'gak enak',
-            'ndak enak',
-            'ga enak',
-            'nggak enak',
-            'tidak lezat',
-            'gk lezat',
-            'gak lezat',
-            'kurang lezat',
-            'ndak lezat',
-            'ga lezat',
-            'nggak lezat',
-            'tidak menarik',
-            'gk menarik',
-            'gak menarik',
-            'kurang menarik',
-            'ndak menarik',
-            'ga menarik',
-            'nggak menarik',
-            'tidak kenyal',
-            'kurang kenyal',
-            'gk kenyal',
-            'gak kenyal',
-            'ndak kenyal',
-            'ga kenyal',
-            'nggak kenyal',
-            'keras',
-            'tidak hemat',
-            'gak hemat',
-            'gk hemat',
-            'ndak hemat',
-            'ga hemat',
-            'kurang hemat',
-            'nggak hemat',
-            'tidak terjangkau',
-            'gk terjangkau',
-            'gak terjangkau',
-            'ndak terjangkau',
-            'ga terjangkau',
-            'kurang terjangkau',
-            'nggak terjangkau',
-            'tidak praktis',
-            'kurang praktis',
-            'gak praktis',
-            'gk praktis',
-            'tidak sepraktis',
-            'ndak praktis',
-            'ga praktis',
-            'nggak praktis',
-            'gak puas',
-            'tidak puas',
-            'kurang puas',
-            'ndak puas',
-            'ga puas',
-            'nggak puas',
-            'tidak mantap',
-            'kurang mantap',
-            'gak mantap',
-            'nggak mantap',
-            'gk mantap',
-            'tdk mantap',
-            'krg mantap',
-            'ndak mantap',
-            'nggak mantap',
-            'ga mantap',
-            'berjamur',
-            'jamur',
-            'jamuran',
-            'lepas vacuum',
-            'lepas vacum',
-            'lepas vakum',
-            'lendir',
-            'berlendir',
-            'apek',
-            'bau',
-            'basi',
-            'asam',
-            'asem',
-            'gosong',
-            'caking',
-            'gumpal',
-            'menggumpal',
-            'benyek',
-            'lembek',
-            'tekstur busuk'
+{
+    // Daftar frasa negatif
+    $negative_phrases = [
+        'tidak enak', 'kurang enak', 'gk enak', 'gak enak', 'ndak enak', 'ga enak', 'nggak enak',
+        'tidak lezat', 'gk lezat', 'gak lezat', 'kurang lezat', 'ndak lezat', 'ga lezat', 'nggak lezat',
+        'tidak menarik', 'gk menarik', 'gak menarik', 'kurang menarik', 'ndak menarik', 'ga menarik', 'nggak menarik',
+        'tidak kenyal', 'kurang kenyal', 'gk kenyal', 'gak kenyal', 'ndak kenyal', 'ga kenyal', 'nggak kenyal',
+        'keras', 'tidak hemat', 'gak hemat', 'gk hemat', 'ndak hemat', 'ga hemat', 'kurang hemat', 'nggak hemat',
+        'tidak terjangkau', 'gk terjangkau', 'gak terjangkau', 'ndak terjangkau', 'ga terjangkau', 'kurang terjangkau', 'nggak terjangkau',
+        'tidak praktis', 'kurang praktis', 'gak praktis', 'gk praktis', 'tidak sepraktis', 'ndak praktis', 'ga praktis', 'nggak praktis',
+        'gak puas', 'tidak puas', 'kurang puas', 'ndak puas', 'ga puas', 'nggak puas',
+        'tidak mantap', 'kurang mantap', 'gak mantap', 'nggak mantap', 'gk mantap', 'tdk mantap', 'krg mantap', 'ndak mantap', 'ga mantap',
+        'berjamur', 'jamur', 'jamuran',
+        'lepas vacuum', 'lepas vacum', 'lepas vakum',
+        'lendir', 'berlendir',
+        'apek', 'bau', 'basi', 'asam', 'asem',
+        'gosong', 'caking', 'gumpal', 'menggumpal', 'benyek', 'lembek', 'tekstur busuk'
+    ];
 
-        ];
+    // Ambil semua komentar (misalnya max 10k untuk performa)
+    $this->db->select('*');
+    $this->db->from('youtube_data');
+    $query = $this->db->get();
+    $all_comments = $query->result();
 
-        // Get all negative mentions
-        $this->db->select('*');
-        $this->db->from('youtube_data');
+    // Filter manual dengan similarity
+    $matched_comments = [];
+    foreach ($all_comments as $comment) {
+        $text = strtolower($comment->text ?? '');
 
-        // Add condition to include only comments with negative phrases
-        $this->db->group_start();
         foreach ($negative_phrases as $phrase) {
-            $this->db->or_like('text', $phrase);
+            similar_text($text, $phrase, $percent);
+            if ($percent > 80 || strpos($text, $phrase) !== false) {
+                $matched_comments[] = $comment;
+                break;
+            }
         }
-        $this->db->group_end();
-
-        $query = $this->db->get();
-        return $query->result();
     }
+
+    return $matched_comments;
+}
+
 
     public function get_total_negative_mentions()
     {
@@ -1040,34 +1085,35 @@ class Youtube_Data_model extends CI_Model
         $this->db->where('updated_at <=', $end_date);
         return $this->db->get('youtube_data')->result();
     }
-    public function get_combined_data($start_date, $end_date)
-    {
-        $query = $this->db->query("
-            SELECT 
-                yd.video_id,
-                yd.keyword AS keyword_comment,
-                yd.author,
-                yd.updated_at AS updated_at_comment,
-                yd.like_count AS like_count_comment,
-                yd.text,
-                yd.title AS title_comment,
-                yd.public,
-                yd2.keyword AS keyword_video,
-                yd2.title AS title_video,
-                yd2.channel_name,
-                yd2.subscriber_count,
-                yd2.tags,
-                yd2.engagement_rate,
-                yd2.total_views,
-                yd2.video_id_like
-            FROM youtube_data yd
-            LEFT JOIN youtube_data_2 yd2 ON yd.video_id = yd2.video_id
-            WHERE yd.updated_at BETWEEN ? AND ?
-            ORDER BY yd.updated_at
-        ", [$start_date, $end_date]);
+   public function get_combined_data($start_date, $end_date)
+{
+    $sql = "
+        SELECT 
+            yd.video_id,
+            yd.keyword AS keyword_comment,
+            yd.author,
+            yd.updated_at AS updated_at_comment,
+            yd.like_count AS like_count_comment,
+            yd.text,
+            yd.title AS title_comment,
+            yd.public,
+            yd2.keyword AS keyword_video,
+            yd2.title AS title_video,
+            yd2.channel_name,
+            yd2.subscriber_count,
+            yd2.tags,
+            yd2.engagement_rate,
+            yd2.total_views,
+            yd2.video_id_like
+        FROM youtube_data yd
+        LEFT JOIN youtube_data_2 yd2 ON yd.video_id = yd2.video_id
+        WHERE DATE(yd.updated_at) BETWEEN ? AND ?
+        ORDER BY yd.updated_at ASC
+    ";
 
-        return $query->result();
-    }
+    return $this->db->query($sql, [$start_date, $end_date])->result();
+}
+
 
     // Method for 'enak' keyword
     public function get_mentions_by_enak()

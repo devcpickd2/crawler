@@ -7,10 +7,14 @@ from datetime import datetime
 # YouTube API setup
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyBflfeHCmNmiKbyTncKICuKvic-W1HaSOY"  # Replace with your actual API key
+# DEVELOPER_KEY = "AIzaSyBflfeHCmNmiKbyTncKICuKvic-W1HaSOY"  # Replace with your actual API key
+
+API_KEYS = [
+    "AIzaSyBiIhS-AKX1TyJbts_Fn5vp8h97ZF0pisI", "AIzaSyAZjHrDnO6pRTDuSz-rThsBOTFrEMI1WqA"
+]
 
 youtube = googleapiclient.discovery.build(
-    api_service_name, api_version, developerKey=DEVELOPER_KEY
+    api_service_name, api_version, developerKey=API_KEYS
 )
 
 def search_videos(query, max_results=10):

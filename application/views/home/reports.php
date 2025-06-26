@@ -235,7 +235,7 @@
                                 <div class="col-md-6">
                                     <div class="row gx-4 mb-3 mt-4">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">PT Charoen Pokphand Products Only</h3>
+                                            <h3 class="text-center">PT Charoen Pokphand Products Only</h3> 
                                             <hr />
                                         </div>
                                     </div>
